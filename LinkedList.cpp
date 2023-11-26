@@ -124,7 +124,6 @@ public:
     }
 
     // Other member functions
-
     void display(ostream& out) const {
         NodePointer ptr = first;
         while (ptr != nullptr) {
@@ -132,8 +131,6 @@ public:
             ptr = ptr->next;
         }
     }
-
-
     // update the balance of the account at the given account number
     void updateBalance(string accountNumber, double amount) {
         NodePointer ptr = first;
@@ -146,6 +143,7 @@ public:
         }
         cerr << "Account number " << accountNumber << " not found." << endl;
     }
+
 
 
     // update the name of the account holder at the given account number
@@ -175,7 +173,6 @@ public:
     }
 
     
-
     friend ostream& operator<<(ostream& out, const List& aList) {
         aList.display(out);
         return out;

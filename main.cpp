@@ -4,24 +4,18 @@
 #include "LinkedList.cpp"
 using namespace std;
 
-// Main function for testing
 int main() {
-    List accountList;
+    // Test the updated classes
 
-    // Add accounts to the list
-    accountList.append(BankAccount("John Doe", "AH123", "Savings", 1500.0));
-    accountList.append(BankAccount("Jane Doe", "AH456", "Checking", 2000.0));
-    accountList.append(BankAccount("Alice Smith", "AH789", "Savings", 3000.0));
+    // Create a bank account
+    BankAccount account("John Doe", "AH123", "Savings", 1500.0);
 
-    // Display the initial list
-    cout << "Initial List:\n" << accountList << endl;
+    // Perform transactions
+    account.performTransaction(Transaction::DEPOSIT, 500.0);
+    account.performTransaction(Transaction::WITHDRAW, 200.0);
 
-    // Update account information
-    accountList.insert(BankAccount("Bob Johnson", "AH999", "Checking", 2500.0), 1);
-    accountList.erase(2);
-
-    // Display the updated list
-    cout << "Updated List:\n" << accountList << endl;
+    // Display transaction history
+    account.displayTransactionHistory();
 
     return 0;
 }
