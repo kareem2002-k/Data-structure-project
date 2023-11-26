@@ -134,7 +134,47 @@ public:
     }
 
 
+    // update the balance of the account at the given account number
+    void updateBalance(string accountNumber, double amount) {
+        NodePointer ptr = first;
+        while (ptr != nullptr) {
+            if (ptr->data.getAccountNumber() == accountNumber) {
+                ptr->data.setBalance(amount);
+                return;
+            }
+            ptr = ptr->next;
+        }
+        cerr << "Account number " << accountNumber << " not found." << endl;
+    }
 
+
+    // update the name of the account holder at the given account number
+    void updateName(string accountNumber, string name) {
+        NodePointer ptr = first;
+        while (ptr != nullptr) {
+            if (ptr->data.getAccountNumber() == accountNumber) {
+                ptr->data.setAccountHolderName(name);
+                return;
+            }
+            ptr = ptr->next;
+        }
+        cerr << "Account number " << accountNumber << " not found." << endl;
+    }
+
+    // update the account holde number of the account at the given account number
+    void updateNumber(string accountNumber, string number) {
+        NodePointer ptr = first;
+        while (ptr != nullptr) {
+            if (ptr->data.getAccountNumber() == accountNumber) {
+                ptr->data.setAccountHolderNumber(number);
+                return;
+            }
+            ptr = ptr->next;
+        }
+        cerr << "Account number " << accountNumber << " not found." << endl;
+    }
+
+    
 
     friend ostream& operator<<(ostream& out, const List& aList) {
         aList.display(out);
