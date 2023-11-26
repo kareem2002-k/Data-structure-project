@@ -6,14 +6,22 @@ using namespace std;
 
 // Main function for testing
 int main() {
-    BankAccount account1("123456", "John Doe", "A123", "Savings", 1000.0);
-    BankAccount account2("789012", "Jane Doe", "B456", "Checking", 2000.0);
+    List accountList;
 
-    List bankAccountList;
-    bankAccountList.insert(account1, 0);
-    bankAccountList.insert(account2, 1);
+    // Add accounts to the list
+    accountList.append(BankAccount("John Doe", "AH123", "Savings", 1500.0));
+    accountList.append(BankAccount("Jane Doe", "AH456", "Checking", 2000.0));
+    accountList.append(BankAccount("Alice Smith", "AH789", "Savings", 3000.0));
 
-    cout << "Bank Accounts:\n" << bankAccountList << endl;
+    // Display the initial list
+    cout << "Initial List:\n" << accountList << endl;
+
+    // Update account information
+    accountList.insert(BankAccount("Bob Johnson", "AH999", "Checking", 2500.0), 1);
+    accountList.erase(2);
+
+    // Display the updated list
+    cout << "Updated List:\n" << accountList << endl;
 
     return 0;
 }
