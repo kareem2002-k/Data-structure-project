@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "BankAccount.cpp"
+#include "BankAccount.h"
 using namespace std;
 
 class List {

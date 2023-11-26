@@ -1,43 +1,23 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <iomanip>
-using namespace std;
+#include "Transaction.h"
 
-class Transaction {
-public:
-    enum TransactionType {
-        DEPOSIT,
-        WITHDRAW,
-        BALANCE_INQUIRY
-    };
+Transaction::Transaction(TransactionType transactionType, double transactionAmount)
+    : type(transactionType), amount(transactionAmount) {
 
-private:
-    TransactionType type;
-    double amount;
-    string date;
+    // Get current date
+    time_t now = time(0);
+    tm* ltm = localtime(&now);
+    date = std::to_string(1 + ltm->tm_mon) + "/" + std::to_string(ltm->tm_mday) + "/" + std::to_string(1900 + ltm->tm_year);
+}
 
-public:
-    Transaction(TransactionType transactionType, double transactionAmount)
-        : type(transactionType), amount(transactionAmount) {
+// Implement getters
+Transaction::TransactionType Transaction::getType() const {
+    return type;
+}
 
-        // Get current date
-        time_t now = time(0);
-        tm* ltm = localtime(&now);
-        date = to_string(1 + ltm->tm_mon) + "/" + to_string(ltm->tm_mday) + "/" + to_string(1900 + ltm->tm_year);
-     
-    }
+double Transaction::getAmount() const {
+    return amount;
+}
 
-    // Getters for transaction details
-    TransactionType getType() const {
-        return type;
-    }
-
-    double getAmount() const {
-        return amount;
-    }
-
-    const string& getDate() const {
-        return date;
-    }
-};
+const std::string& Transaction::getDate() const {
+    return date;
+}
