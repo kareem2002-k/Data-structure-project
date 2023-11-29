@@ -49,10 +49,6 @@ void BankAccount::setBalance(double newBalance) {
     balance = newBalance;
 }
 
-
-
-
-
 void BankAccount::performTransaction(Transaction::TransactionType transactionType, double amount) {
     if (transactionType == Transaction::DEPOSIT) {
         balance += amount;
@@ -74,17 +70,13 @@ void BankAccount::performTransaction(Transaction::TransactionType transactionTyp
         transactions.append(currentTransaction);
 
         cout<< "your balance inquiry result..."<<balance<<endl;
-
-
     }
-
-
-
 }
 
 void BankAccount::displayTransactionHistory(){
 
-    std::cout<<"TRANSACTION HISTORY FOR: "<<accountHolderName<<" \n" <<transactions;
+    cout<<"TRANSACTION HISTORY FOR: "<<accountHolderName<<" \n" <<transactions;
+    cout<<getBalance()<<endl;
 }
 
 

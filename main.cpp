@@ -8,7 +8,7 @@ int main() {
     // Test the BankAccount class
     BankAccount account1("John Doe", "10000", "Savings", 1500.0);
     BankAccount account2("Jane Doe", "10000", "Checking", 2000.0);
-    BankAccount accountM("kAREEM", "10000", "Checking", 3000.0);
+    BankAccount accountM("KAREEM", "10000", "Checking", 3000.0);
 
     // Perform transactions on account1
     account1.performTransaction(Transaction::DEPOSIT, 500.0);
