@@ -75,6 +75,7 @@ void BankAccount::displayTransactionHistory(){
 std::string BankAccount::generateAccountNumber() {
     std::stringstream ss;
     ss << "ACC" << std::setfill('0') << std::setw(5) << nextAccountNumber++;
+    return ss.str();  // Add this line to return the generated account number
 }
 
 std::ostream& operator<<(std::ostream& os, const BankAccount& account) {

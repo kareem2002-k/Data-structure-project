@@ -17,13 +17,11 @@ int main() {
     // Display transaction history for account1
     account1.displayTransactionHistory();
 
-    // Display account details
-    cout << "Account Details:\n";
-    cout << "Account Number: " << account1.getAccountNumber() << endl;
-    cout << "Account Holder Name: " << account1.getAccountHolderName() << endl;
-    cout << "Account Holder Number: " << account1.getAccountHolderNumber() << endl;
-    cout << "Account Type: " << account1.getAccountType() << endl;
-    cout << "Balance: " << account1.getBalance() << endl;
+    cout<<"----------------"<<endl;
+    cout << account1;
+    cout<<"----------------"<<endl;
+
+
 
     // Test the List class
     LinkedList<BankAccount> accountList;
@@ -34,11 +32,6 @@ int main() {
     accountList.erase(0);
 
     cout << "\nAccount List:\n" << accountList << endl;
-
-    // Update account details in the list
-
-
-    cout << "\nUpdated Account List:\n" << accountList << endl;
 
     return 0;
 }
