@@ -49,6 +49,10 @@ void BankAccount::setBalance(double newBalance) {
     balance = newBalance;
 }
 
+
+  
+
+
 void BankAccount::performTransaction(Transaction::TransactionType transactionType, double amount) {
     if (transactionType == Transaction::DEPOSIT) {
         balance += amount;
