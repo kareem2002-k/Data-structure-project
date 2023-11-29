@@ -73,7 +73,7 @@ void BankAccount::performTransaction(Transaction::TransactionType transactionTyp
         Transaction currentTransaction = Transaction(transactionType, 0);
         transactions.append(currentTransaction);
 
-        cout<<balance;
+        cout<< "your balance inquiry result..."<<balance<<endl;
 
 
     }
