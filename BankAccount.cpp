@@ -1,39 +1,39 @@
 #include "BankAccount.h"
 #include <iostream>
 #include <iomanip>
+using namespace std;
 
 int BankAccount::nextAccountNumber = 1;
 
-BankAccount::BankAccount(const std::string& accHolderName, const std::string& accHolderNumber,
-                         const std::string& accType, double initBalance)
+BankAccount::BankAccount(const string& accHolderName, const string& accHolderNumber, const string& accType, double initBalance)
     : accountNumber(generateAccountNumber()), accountHolderName(accHolderName),
       accountHolderNumber(accHolderNumber), accountType(accType), balance(initBalance) {}
 
-const std::string& BankAccount::getAccountNumber() const {
+const string& BankAccount::getAccountNumber() const {
     return accountNumber;
 }
 
-const std::string& BankAccount::getAccountHolderName() const {
+const string& BankAccount::getAccountHolderName() const {
     return accountHolderName;
 }
 
-void BankAccount::setAccountHolderName(const std::string& name) {
+void BankAccount::setAccountHolderName(const string& name) {
     accountHolderName = name;
 }
 
-const std::string& BankAccount::getAccountHolderNumber() const {
+const string& BankAccount::getAccountHolderNumber() const {
     return accountHolderNumber;
 }
 
-void BankAccount::setAccountHolderNumber(const std::string& number) {
+void BankAccount::setAccountHolderNumber(const string& number) {
     accountHolderNumber = number;
 }
 
-const std::string& BankAccount::getAccountType() const {
+const string& BankAccount::getAccountType() const {
     return accountType;
 }
 
-void BankAccount::setAccountType(const std::string& type) {
+void BankAccount::setAccountType(const string& type) {
     accountType = type;
 }
 
@@ -52,7 +52,7 @@ void BankAccount::performTransaction(Transaction::TransactionType transactionTyp
         if (balance >= amount) {
             balance -= amount;
         } else {
-            std::cerr << "Insufficient funds for withdrawal." << std::endl;
+            cerr << "Insufficient funds for withdrawal." << endl;
             return;
         }
     }
@@ -61,29 +61,29 @@ void BankAccount::performTransaction(Transaction::TransactionType transactionTyp
 }
 
 void BankAccount::displayTransactionHistory() const {
-    std::cout << "Transaction History for Account Number " << accountNumber << ":\n";
-    std::cout << std::setw(20) << "Date" << std::setw(15) << "Type" << std::setw(10) << "Amount" << std::endl;
-    std::cout << std::string(45, '-') << std::endl;
+    cout << "Transaction History for Account Number " << accountNumber << ":\n";
+    cout << setw(20) << "Date" << setw(15) << "Type" << setw(10) << "Amount" << endl;
+    cout << string(45, '-') << endl;
 
     for (const auto& transaction : transactions) {
-        std::cout << std::setw(20) << transaction.getDate() << std::setw(15);
+        cout << setw(20) << transaction.getDate() << setw(15);
         switch (transaction.getType()) {
             case Transaction::DEPOSIT:
-                std::cout << "Deposit";
+                cout << "Deposit";
                 break;
             case Transaction::WITHDRAW:
-                std::cout << "Withdrawal";
+                cout << "Withdrawal";
                 break;
             case Transaction::BALANCE_INQUIRY:
-                std::cout << "Balance Inquiry";
+                cout << "Balance Inquiry";
                 break;
         }
-        std::cout << std::setw(10) << std::fixed << std::setprecision(2) << transaction.getAmount() << std::endl;
+        cout << setw(10) << fixed << setprecision(2) << transaction.getAmount() << endl;
     }
 }
 
-std::string BankAccount::generateAccountNumber() {
-    std::stringstream ss;
-    ss << "ACC" << std::setfill('0') << std::setw(5) << nextAccountNumber++;
+string BankAccount::generateAccountNumber() {
+    stringstream ss;
+    ss << "ACC" << setfill('0') << setw(5) << nextAccountNumber++;
     return ss.str();
 }
