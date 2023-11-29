@@ -50,23 +50,36 @@ void BankAccount::setBalance(double newBalance) {
 }
 
 
-  
+
 
 
 void BankAccount::performTransaction(Transaction::TransactionType transactionType, double amount) {
     if (transactionType == Transaction::DEPOSIT) {
         balance += amount;
+        Transaction currentTransaction = Transaction(transactionType, amount);
+        transactions.append(currentTransaction);
     } else if (transactionType == Transaction::WITHDRAW) {
+
         if (balance >= amount) {
             balance -= amount;
+            Transaction currentTransaction = Transaction(transactionType, amount);
+            transactions.append(currentTransaction);
         } else {
             cerr << "Insufficient funds for withdrawal." << endl;
             return;
         }
     }
+    else if(transactionType == Transaction::BALANCE_INQUIRY){
+        Transaction currentTransaction = Transaction(transactionType, 0);
+        transactions.append(currentTransaction);
 
-    Transaction currentTransaction = Transaction(transactionType, amount);
-    transactions.append(currentTransaction);
+        cout<<balance;
+
+
+    }
+
+
+
 }
 
 void BankAccount::displayTransactionHistory(){

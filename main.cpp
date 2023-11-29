@@ -13,7 +13,7 @@ int main() {
     // Perform transactions on account1
     account1.performTransaction(Transaction::DEPOSIT, 500.0);
     account1.performTransaction(Transaction::WITHDRAW, 200.0);
-
+    account1.performTransaction(Transaction::BALANCE_INQUIRY, 8888.0);
     // Display transaction history for account1
     account1.displayTransactionHistory();
 
