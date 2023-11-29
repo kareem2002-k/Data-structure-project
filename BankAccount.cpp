@@ -7,7 +7,7 @@ int BankAccount::nextAccountNumber = 1;
 
 BankAccount::BankAccount(const string& accHolderName, const string& accHolderNumber, const string& accType, double initBalance)
     : accountNumber(generateAccountNumber()), accountHolderName(accHolderName),
-      accountHolderNumber(accHolderNumber), accountType(accType), balance(initBalance) {}
+    accountHolderNumber(accHolderNumber), accountType(accType), balance(initBalance) {}
 
 const string& BankAccount::getAccountNumber() const {
     return accountNumber;
