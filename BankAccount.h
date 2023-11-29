@@ -6,6 +6,8 @@
 #include "Transaction.h" // Assuming Transaction class is declared in Transaction.h
 #include <sstream>
 #include <iomanip>
+#include <Transaction.h>
+#include <LinkedList.cpp>
 
 class BankAccount {
 private:
@@ -15,7 +17,7 @@ private:
     std::string accountHolderNumber;
     std::string accountType;
     double balance;
-    std::vector<Transaction> transactions;
+    LinkedList<Transaction> transactions;
 
 public:
     BankAccount(const std::string& accHolderName, const std::string& accHolderNumber,
@@ -37,5 +39,7 @@ public:
 private:
     static std::string generateAccountNumber();
 };
+std::ostream& operator<<(std::ostream& os, const BankAccount& account);
+
 
 #endif // BANKACCOUNT_H

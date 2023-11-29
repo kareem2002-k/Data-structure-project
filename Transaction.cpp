@@ -21,3 +21,20 @@ double Transaction::getAmount() const {
 const std::string& Transaction::getDate() const {
     return date;
 }
+
+std::ostream& operator<<(std::ostream& os, const Transaction& transaction) {
+    os << "Date: " << transaction.getDate() << "\n";
+    switch (transaction.getType()) {
+        case Transaction::DEPOSIT:
+            os << "Type: Deposit\n";
+            break;
+        case Transaction::WITHDRAW:
+            os << "Type: Withdrawal\n";
+            break;
+        case Transaction::BALANCE_INQUIRY:
+            os << "Type: Balance Inquiry\n";
+            break;
+    }
+    os << "Amount: $" << std::fixed << std::setprecision(2) << transaction.getAmount() << "\n";
+    return os;
+}

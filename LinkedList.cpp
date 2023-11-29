@@ -1,185 +1,166 @@
 #include <iostream>
-#include <string>
 #include "BankAccount.h"
-using namespace std;
 
-class List {
+template <typename T>
+class Node {
+public:
+    T data;
+    Node* next;
+
+    Node(const T& value) : data(value), next(nullptr) {}
+};
+
+template <typename T>
+class LinkedList {
 private:
-    class Node {
-    public:
-        BankAccount data;
-        Node* next;
-
-        Node(const BankAccount& dataValue) : data(dataValue), next(nullptr) {}
-    };
-
-    typedef Node* NodePointer;
+    int size;  // Added data member to track the size
 
 public:
-    List() : first(nullptr), mySize(0) {}
+    Node<T>* head;
+public:
+    // Constructor
+    LinkedList() : head(nullptr), size(0) {}
 
-    ~List() {
-        NodePointer prev = first;
-        NodePointer ptr;
-        while (prev != nullptr) {
-            ptr = prev->next;
-            delete prev;
-            prev = ptr;
-        }
-        first = nullptr;
-        mySize = 0;
+    // Destructor
+    ~LinkedList() {
+        clear();
     }
 
     // Copy constructor
-    List(const List& origList) : first(nullptr), mySize(origList.mySize) {
-        if (mySize == 0)
-            return;
-
-        NodePointer origPtr, newPtr;
-        first = new Node(origList.first->data);
-
-        newPtr = first;
-        origPtr = origList.first->next;
-
-        while (origPtr != nullptr) {
-            newPtr->next = new Node(origPtr->data);
-            origPtr = origPtr->next;
-            newPtr = newPtr->next;
-        }
+    LinkedList(const LinkedList& other) {
+        head = copyList(other.head);
+        size = other.size;
     }
 
     // Assignment operator
-    const List& operator=(const List& rightSide) {
-        mySize = rightSide.mySize;
-
-        if (mySize == 0) {
-            this->~List();
-            first = nullptr;
-            return *this;
-        }
-        if (this != &rightSide) {
-            this->~List();
-            NodePointer origPtr, newPtr;
-            first = new Node(rightSide.first->data);
-
-            newPtr = first;
-            origPtr = rightSide.first->next;
-
-            while (origPtr != nullptr) {
-                newPtr->next = new Node(origPtr->data);
-                origPtr = origPtr->next;
-                newPtr = newPtr->next;
-            }
+    LinkedList& operator=(const LinkedList& other) {
+        if (this != &other) {
+            clear();
+            head = copyList(other.head);
+            size = other.size;
         }
         return *this;
     }
 
-    // Member functions
+    // Output operator
+    template <typename U>
+    friend std::ostream& operator<<(std::ostream& os, const LinkedList<U>& list);
 
-    void insert(const BankAccount& dataVal, int index) {
-        if (index < 0 || index > mySize) {
-            cerr << "Illegal location to insert -- " << index << endl;
+    // Insert function at a specific index
+    void insert(int index, const T& value) {
+        if (index < 0 || index > size) {
+            std::cerr << "Error: Index out of bounds" << std::endl;
             return;
         }
 
-        mySize++;
-        NodePointer newNodePtr = new Node(dataVal),
-                    predNodePtr = first;
-        if (index == 0) {
-            newNodePtr->next = first;
-            first = newNodePtr;
+        if (index == 0 || head == nullptr) {
+            // Insert at the beginning
+            Node<T>* newNode = new Node<T>(value);
+            newNode->next = head;
+            head = newNode;
         } else {
-            for (int i = 1; i < index; i++) {
-                predNodePtr = predNodePtr->next;
+            // Insert at a specific index
+            Node<T>* current = head;
+            for (int i = 0; i < index - 1 && current != nullptr; ++i) {
+                current = current->next;
             }
-            newNodePtr->next = predNodePtr->next;
-            predNodePtr->next = newNodePtr;
+
+            if (current != nullptr) {
+                Node<T>* newNode = new Node<T>(value);
+                newNode->next = current->next;
+                current->next = newNode;
+            } else {
+                std::cerr << "Error: Index out of bounds" << std::endl;
+                return;
+            }
         }
+
+        size++;
     }
 
-   // add to the end of the list
-    void append(const BankAccount& dataVal) {
-        insert(dataVal, mySize);
-    }
-
+    // Erase function at a specific index
     void erase(int index) {
-        if (index < 0 || index >= mySize) {
-            cerr << "Illegal location to delete -- " << index << endl;
+        if (index < 0 || index >= size) {
+            std::cerr << "Error: Index out of bounds" << std::endl;
             return;
         }
-        mySize--;
-        NodePointer ptr, predPtr = first;
+
         if (index == 0) {
-            ptr = first;
-            first = first->next;
-            delete ptr;
+            // Erase at the beginning
+            Node<T>* temp = head;
+            head = head->next;
+            delete temp;
         } else {
-            for (int i = 1; i < index; i++) {
-                predPtr = predPtr->next;
+            // Erase at a specific index
+            Node<T>* current = head;
+            Node<T>* previous = nullptr;
+            for (int i = 0; i < index && current != nullptr; ++i) {
+                previous = current;
+                current = current->next;
             }
-            ptr = predPtr->next;
-            predPtr->next = ptr->next;
-            delete ptr;
-        }
-    }
 
-    // Other member functions
-    void display(ostream& out) const {
-        NodePointer ptr = first;
-        while (ptr != nullptr) {
-            out << ptr->data.getBalance() << "  "; // Displaying balance as an example
-            ptr = ptr->next;
-        }
-    }
-    // update the balance of the account at the given account number
-    void updateBalance(string accountNumber, double amount) {
-        NodePointer ptr = first;
-        while (ptr != nullptr) {
-            if (ptr->data.getAccountNumber() == accountNumber) {
-                ptr->data.setBalance(amount);
+            if (current != nullptr) {
+                previous->next = current->next;
+                delete current;
+            } else {
+                std::cerr << "Error: Index out of bounds" << std::endl;
                 return;
             }
-            ptr = ptr->next;
         }
-        cerr << "Account number " << accountNumber << " not found." << endl;
+
+        size--;
     }
 
-
-
-    // update the name of the account holder at the given account number
-    void updateName(string accountNumber, string name) {
-        NodePointer ptr = first;
-        while (ptr != nullptr) {
-            if (ptr->data.getAccountNumber() == accountNumber) {
-                ptr->data.setAccountHolderName(name);
-                return;
-            }
-            ptr = ptr->next;
-        }
-        cerr << "Account number " << accountNumber << " not found." << endl;
+    // Append function to insert at the end
+    void append(const T& value) {
+        insert(size, value);
     }
 
-    // update the account holde number of the account at the given account number
-    void updateNumber(string accountNumber, string number) {
-        NodePointer ptr = first;
-        while (ptr != nullptr) {
-            if (ptr->data.getAccountNumber() == accountNumber) {
-                ptr->data.setAccountHolderNumber(number);
-                return;
-            }
-            ptr = ptr->next;
+    // Clear function to delete all nodes
+    void clear() {
+        while (head != nullptr) {
+            Node<T>* temp = head;
+            head = head->next;
+            delete temp;
         }
-        cerr << "Account number " << accountNumber << " not found." << endl;
+
+        size = 0;
     }
 
-    
-    friend ostream& operator<<(ostream& out, const List& aList) {
-        aList.display(out);
-        return out;
+    // Function to get the size of the list
+    int getSize() const {
+        return size;
     }
 
 private:
-    NodePointer first;
-    int mySize;
+    // Helper function for deep copy
+    Node<T>* copyList(const Node<T>* source) {
+        if (source == nullptr) {
+            return nullptr;
+        }
+
+        Node<T>* newHead = new Node<T>(source->data);
+        Node<T>* currentNewNode = newHead;
+        const Node<T>* currentSourceNode = source->next;
+
+        while (currentSourceNode != nullptr) {
+            currentNewNode->next = new Node<T>(currentSourceNode->data);
+            currentNewNode = currentNewNode->next;
+            currentSourceNode = currentSourceNode->next;
+        }
+
+        return newHead;
+    }
 };
 
+// Output operator implementation
+
+template <typename T>
+std::ostream& operator<<(std::ostream& os, const LinkedList<T>& list) {
+    Node<T>* current = list.head;
+    while (current != nullptr) {
+        os << current->data << " ";
+        current = current->next;
+    }
+    return os;
+}

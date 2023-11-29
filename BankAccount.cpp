@@ -7,7 +7,9 @@ int BankAccount::nextAccountNumber = 1;
 BankAccount::BankAccount(const std::string& accHolderName, const std::string& accHolderNumber,
                          const std::string& accType, double initBalance)
     : accountNumber(generateAccountNumber()), accountHolderName(accHolderName),
-      accountHolderNumber(accHolderNumber), accountType(accType), balance(initBalance) {}
+      accountHolderNumber(accHolderNumber), accountType(accType), balance(initBalance) {
+    //transactions = LinkedList<Transaction>();
+}
 
 const std::string& BankAccount::getAccountNumber() const {
     return accountNumber;
@@ -57,33 +59,22 @@ void BankAccount::performTransaction(Transaction::TransactionType transactionTyp
         }
     }
 
-    transactions.emplace_back(transactionType, amount);
+    //Transaction currentTransaction = Transaction(transactionType, amount);
+    //transactions.append(currentTransaction);
 }
 
-void BankAccount::displayTransactionHistory() const {
-    std::cout << "Transaction History for Account Number " << accountNumber << ":\n";
-    std::cout << std::setw(20) << "Date" << std::setw(15) << "Type" << std::setw(10) << "Amount" << std::endl;
-    std::cout << std::string(45, '-') << std::endl;
 
-    for (const auto& transaction : transactions) {
-        std::cout << std::setw(20) << transaction.getDate() << std::setw(15);
-        switch (transaction.getType()) {
-            case Transaction::DEPOSIT:
-                std::cout << "Deposit";
-                break;
-            case Transaction::WITHDRAW:
-                std::cout << "Withdrawal";
-                break;
-            case Transaction::BALANCE_INQUIRY:
-                std::cout << "Balance Inquiry";
-                break;
-        }
-        std::cout << std::setw(10) << std::fixed << std::setprecision(2) << transaction.getAmount() << std::endl;
-    }
-}
 
 std::string BankAccount::generateAccountNumber() {
     std::stringstream ss;
     ss << "ACC" << std::setfill('0') << std::setw(5) << nextAccountNumber++;
     return ss.str();
+}
+
+std::ostream& operator<<(std::ostream& os, const BankAccount& account) {
+    os << "Account Holder: " << account.getAccountHolderName() << "\n"
+       << "Account Number: " << account.getAccountNumber() << "\n"
+       << "Account Type: " << account.getAccountType() << "\n"
+       << "Balance: $" << std::fixed << std::setprecision(2) << account.getBalance() << "\n";
+    return os;
 }

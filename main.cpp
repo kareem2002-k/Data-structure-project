@@ -1,7 +1,7 @@
-#include <iostream>
+ #include <iostream>
 #include <string>
 #include "BankAccount.h"
-#include "LinkedList.cpp"  // Assuming the List class is defined in this file
+#include "Transaction.h"
 using namespace std;
 
 int main() {
@@ -26,19 +26,17 @@ int main() {
     cout << "Balance: " << account1.getBalance() << endl;
 
     // Test the List class
-    List accountList;
+    LinkedList<BankAccount> accountList;
     accountList.append(account1);
     accountList.append(account2);
-    accountList.insert(accountM, 1);
+    accountList.insert(1, accountM);
     
     accountList.erase(0);
 
     cout << "\nAccount List:\n" << accountList << endl;
 
     // Update account details in the list
-    accountList.updateBalance("AH123", 3000.0);
-    accountList.updateName("AH456", "New Jane Doe");
-    accountList.updateNumber("AH123", "New Number");
+
 
     cout << "\nUpdated Account List:\n" << accountList << endl;
 

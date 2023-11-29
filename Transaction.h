@@ -28,4 +28,6 @@ public:
     const std::string& getDate() const;
 };
 
+std::ostream& operator<<(std::ostream& os, const Transaction& transaction);
+
 #endif // TRANSACTION_H
