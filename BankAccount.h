@@ -34,7 +34,7 @@ public:
     void setBalance(double newBalance);
 
     void performTransaction(Transaction::TransactionType transactionType, double amount);
-    void displayTransactionHistory() const;
+    void displayTransactionHistory();
 
 private:
     static std::string generateAccountNumber();

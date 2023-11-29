@@ -8,7 +8,7 @@ BankAccount::BankAccount(const std::string& accHolderName, const std::string& ac
                          const std::string& accType, double initBalance)
     : accountNumber(generateAccountNumber()), accountHolderName(accHolderName),
       accountHolderNumber(accHolderNumber), accountType(accType), balance(initBalance) {
-    //transactions = LinkedList<Transaction>();
+    transactions = LinkedList<Transaction>();
 }
 
 const std::string& BankAccount::getAccountNumber() const {
@@ -59,8 +59,13 @@ void BankAccount::performTransaction(Transaction::TransactionType transactionTyp
         }
     }
 
-    //Transaction currentTransaction = Transaction(transactionType, amount);
-    //transactions.append(currentTransaction);
+    Transaction currentTransaction = Transaction(transactionType, amount);
+    transactions.append(currentTransaction);
+}
+
+void BankAccount::displayTransactionHistory(){
+
+    std::cout<<"TRANSACTION HISTORY FOR: "<<accountHolderName<<" \n" <<transactions;
 }
 
 
