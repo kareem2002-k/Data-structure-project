@@ -11,6 +11,7 @@ BankAccount::BankAccount(const string& accHolderName, const string& accHolderNum
     transactions = LinkedList<Transaction>();
 }
 
+
 const string& BankAccount::getAccountNumber() const {
     return accountNumber;
 }
