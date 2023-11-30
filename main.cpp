@@ -1,4 +1,4 @@
- #include <iostream>
+#include <iostream>
 #include <string>
 #include "BankAccount.h"
 #include "Transaction.h"
@@ -17,21 +17,40 @@ int main() {
     // Display transaction history for account1
     account1.displayTransactionHistory();
 
-    cout<<"----------------"<<endl;
+    cout << "----------------" << endl;
     cout << account1;
-    cout<<"----------------"<<endl;
-
-
+    cout << "----------------" << endl;
 
     // Test the List class
     LinkedList<BankAccount> accountList;
     accountList.append(account1);
     accountList.append(account2);
     accountList.insert(1, accountM);
-    
-    accountList.erase(0);
 
-    cout << "\nAccount List:\n" << accountList << endl;
+    // Display the initial account list
+    cout << "\nInitial Account List:\n" << accountList << endl;
+
+    // Test the remaining functions
+    cout << "\nTesting Remaining LinkedList Functions:\n";
+    cout << "Size of the list: " << accountList.getSize() << endl;
+
+    // Erase an element
+    accountList.erase(0);
+    cout << "\nAfter erasing the first element:\n" << accountList << endl;
+
+    // Insert at a specific index
+    BankAccount accountX("John X", "10001", "Savings", 3000.0);
+    accountList.insert(1, accountX);
+    cout << "\nAfter inserting at index 1:\n" << accountList << endl;
+
+    // Append an element
+    BankAccount accountY("John Y", "10002", "Checking", 4000.0);
+    accountList.append(accountY);
+    cout << "\nAfter appending:\n" << accountList << endl;
+
+    // Clear the list
+    accountList.clear();
+    cout << "\nAfter clearing the list:\n" << accountList << endl;
 
     return 0;
 }
