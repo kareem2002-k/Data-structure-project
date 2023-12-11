@@ -6,9 +6,9 @@ using namespace std;
 
 int main() {
     // Test the BankAccount class
-    BankAccount account1("John Doe", "10000", "Savings", 1500.0);
-    BankAccount account2("Jane Doe", "10000", "Checking", 2000.0);
-    BankAccount accountM("KAREEM", "10000", "Checking", 3000.0);
+    BankAccount account1("Savings", 1500.0);
+    BankAccount account2("Checking", 2000.0);
+    BankAccount accountM("Checking", 3000.0);
 
     // Perform transactions on account1
     account1.performTransaction(Transaction::DEPOSIT, 500.0);
@@ -39,12 +39,12 @@ int main() {
     cout << "\nAfter erasing the first element:\n" << accountList << endl;
 
     // Insert at a specific index
-    BankAccount accountX("John X", "10001", "Savings", 3000.0);
+    BankAccount accountX("Savings", 3000.0);
     accountList.insert(1, accountX);
     cout << "\nAfter inserting at index 1:\n" << accountList << endl;
 
     // Append an element
-    BankAccount accountY("John Y", "10002", "Checking", 4000.0);
+    BankAccount accountY("Checking", 4000.0);
     accountList.append(accountY);
     cout << "\nAfter appending:\n" << accountList << endl;
 

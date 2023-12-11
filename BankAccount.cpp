@@ -5,9 +5,8 @@ using namespace std;
 
 int BankAccount::nextAccountNumber = 1;
 
-BankAccount::BankAccount(const string& accHolderName, const string& accHolderNumber, const string& accType, double initBalance)
-    : accountNumber(generateAccountNumber()), accountHolderName(accHolderName),
-      accountHolderNumber(accHolderNumber), accountType(accType), balance(initBalance) {
+BankAccount::BankAccount(const string& accType, double initBalance)
+    : accountNumber(generateAccountNumber()), accountType(accType), balance(initBalance) {
     transactions = LinkedList<Transaction>();
 }
 
@@ -17,21 +16,21 @@ const string& BankAccount::getAccountNumber() const {
     return accountNumber;
 }
 
-const string& BankAccount::getAccountHolderName() const {
-    return accountHolderName;
-}
+//const string& BankAccount::getAccountHolderName() const {
+//    return accountHolderName;
+//}
+//
+//void BankAccount::setAccountHolderName(const string& name) {
+//    accountHolderName = name;
+//}
 
-void BankAccount::setAccountHolderName(const string& name) {
-    accountHolderName = name;
-}
-
-const string& BankAccount::getAccountHolderNumber() const {
-    return accountHolderNumber;
-}
-
-void BankAccount::setAccountHolderNumber(const string& number) {
-    accountHolderNumber = number;
-}
+//const string& BankAccount::getAccountHolderNumber() const {
+//    return accountHolderNumber;
+//}
+//
+//void BankAccount::setAccountHolderNumber(const string& number) {
+//    accountHolderNumber = number;
+//}
 
 const string& BankAccount::getAccountType() const {
     return accountType;
@@ -74,8 +73,8 @@ void BankAccount::performTransaction(Transaction::TransactionType transactionTyp
 }
 
 void BankAccount::displayTransactionHistory(){
-
-    cout<<"TRANSACTION HISTORY FOR: "<<accountHolderName<<" \n" <<transactions;
+    //TODO: try to fetch username or change fn location
+    cout<<"TRANSACTION HISTORY FOR: "<< "Usertemp" <<" \n" <<transactions;
     cout<<getBalance()<<endl;
 }
 
@@ -88,8 +87,8 @@ std::string BankAccount::generateAccountNumber() {
 }
 
 std::ostream& operator<<(std::ostream& os, const BankAccount& account) {
-    os << "Account Holder: " << account.getAccountHolderName() << "\n"
-       << "Account Number: " << account.getAccountNumber() << "\n"
+    // "Account Holder: " << account.getAccountHolderName() << "\n"
+    os << "Account Number: " << account.getAccountNumber() << "\n"
        << "Account Type: " << account.getAccountType() << "\n"
        << "Balance: $" << std::fixed << std::setprecision(2) << account.getBalance() << "\n";
     return os;
