@@ -9,12 +9,37 @@ int main() {
     BankAccount account1("Savings", 1500.0);
     BankAccount account2("Checking", 2000.0);
     BankAccount accountM("Checking", 3000.0);
+    // Test BankAccount class
+    std::cout << "===== BankAccount Class Test =====\n";
 
-    // Perform transactions on account1
+    // Test constructor and display
+    
+    BankAccount account1("Kareem", "12345", "Savings", 1000.0);
+    std::cout << "Initial Account State:\n" << account1;
+
+    BankAccount account2("Youssef", "54321", "Checking", 2000.0);
+    std::cout << "Initial Account State:\n" << account2;
+
+    BankAccount account3("Omar", "98765", "Savings", 1500.0);
+    std::cout << "Initial Account State:\n" << account3;
+
+    BankAccount account4("Ahmed", "56789", "Checking", 3000.0);
+    std::cout << "Initial Account State:\n" << account4;
+
+    // Test getters and setters
+    account1.setAccountHolderName("Kareem Updated");
+    account1.setAccountType("Checking");
+    std::cout << "Updated Account State:\n" << account1;
+
+    // Test deposit and withdrawal
     account1.performTransaction(Transaction::DEPOSIT, 500.0);
     account1.performTransaction(Transaction::WITHDRAW, 200.0);
-    account1.performTransaction(Transaction::BALANCE_INQUIRY, 8888.0);
-    // Display transaction history for account1
+    std::cout << "After Deposit and Withdrawal:\n" << account1;
+
+    // Test balance inquiry
+    account1.performTransaction(Transaction::BALANCE_INQUIRY, 0.0);
+
+    // Test transaction history
     account1.displayTransactionHistory();
 
     cout << "----------------" << endl;
