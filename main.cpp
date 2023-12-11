@@ -7,34 +7,31 @@ using namespace std;
 int main() {
     // Test the BankAccount class
     BankAccount account1("Savings", 1500.0);
+    cout << "Initial Account State:\n" << account1;
+
     BankAccount account2("Checking", 2000.0);
+    cout << "Initial Account State:\n" << account2;
+
     BankAccount accountM("Checking", 3000.0);
     // Test BankAccount class
-    std::cout << "===== BankAccount Class Test =====\n";
+    cout << "===== BankAccount Class Test =====\n";
 
-    // Test constructor and display
-    
-    BankAccount account1("Kareem", "12345", "Savings", 1000.0);
-    std::cout << "Initial Account State:\n" << account1;
 
-    BankAccount account2("Youssef", "54321", "Checking", 2000.0);
-    std::cout << "Initial Account State:\n" << account2;
+    BankAccount account3("Savings", 1500.0);
+    cout << "Initial Account State:\n" << account3;
 
-    BankAccount account3("Omar", "98765", "Savings", 1500.0);
-    std::cout << "Initial Account State:\n" << account3;
-
-    BankAccount account4("Ahmed", "56789", "Checking", 3000.0);
-    std::cout << "Initial Account State:\n" << account4;
+    BankAccount account4("Checking", 3000.0);
+    cout << "Initial Account State:\n" << account4;
 
     // Test getters and setters
-    account1.setAccountHolderName("Kareem Updated");
+//    account1.setAccountHolderName("Kareem Updated");
     account1.setAccountType("Checking");
-    std::cout << "Updated Account State:\n" << account1;
+    cout << "Updated Account State:\n" << account1;
 
     // Test deposit and withdrawal
     account1.performTransaction(Transaction::DEPOSIT, 500.0);
     account1.performTransaction(Transaction::WITHDRAW, 200.0);
-    std::cout << "After Deposit and Withdrawal:\n" << account1;
+    cout << "After Deposit and Withdrawal:\n" << account1;
 
     // Test balance inquiry
     account1.performTransaction(Transaction::BALANCE_INQUIRY, 0.0);
