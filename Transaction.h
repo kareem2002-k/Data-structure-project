@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+using namespace std;
 
 class Transaction {
 public:
@@ -16,7 +17,7 @@ public:
 private:
     TransactionType type;
     double amount;
-    std::string date;
+    string date;
 
 public:
     Transaction(TransactionType transactionType, double transactionAmount);
@@ -24,9 +25,9 @@ public:
     // Getters for transaction details
     TransactionType getType() const;
     double getAmount() const;
-    const std::string& getDate() const;
+    const string& getDate() const;
 };
 
-std::ostream& operator<<(std::ostream& os, const Transaction& transaction);
+ostream& operator<<(ostream& os, const Transaction& transaction);
 
 #endif // TRANSACTION_H

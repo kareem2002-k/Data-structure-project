@@ -13,9 +13,8 @@ template <typename T>
 class LinkedList {
 private:
     int size;  // Added data member to track the size
-
-public:
     Node<T>* head;
+
 public:
     // Constructor
     LinkedList() : head(nullptr), size(0) {}
@@ -26,8 +25,10 @@ public:
     }
 
     // Copy constructor
-    LinkedList(const LinkedList& other) {
-        head = copyList(other.head);
+    LinkedList(const LinkedList& other)
+    : head(nullptr), size(other.size){
+        if (other.head == nullptr) return;
+        copyList(other.head, head);
         size = other.size;
     }
 
@@ -35,7 +36,7 @@ public:
     LinkedList& operator=(const LinkedList& other) {
         if (this != &other) {
             clear();
-            head = copyList(other.head);
+            copyList(other.head, head);
             size = other.size;
         }
         return *this;
@@ -60,7 +61,7 @@ public:
         } else {
             // Insert at a specific index
             Node<T>* current = head;
-            for (int i = 0; i < index - 1 && current != nullptr; ++i) {
+            for (int i = 1; i < index; i++) {
                 current = current->next;
             }
 
@@ -93,20 +94,14 @@ public:
             // Erase at a specific index
             Node<T>* current = head;
             Node<T>* previous = nullptr;
-            for (int i = 0; i < index && current != nullptr; ++i) {
-                previous = current;
+            for (int i = 1; i < index; i++) {
                 current = current->next;
             }
 
-            if (current != nullptr) {
-                previous->next = current->next;
-                delete current;
-            } else {
-                std::cerr << "Error: Index out of bounds" << std::endl;
-                return;
-            }
+            previous = current -> next;
+            current->next = previous->next;
+            delete previous;
         }
-
         size--;
     }
 
@@ -133,13 +128,13 @@ public:
 
 private:
     // Helper function for deep copy
-    Node<T>* copyList(const Node<T>* source) {
+    void copyList(const Node<T>* source, Node<T>* orighead) {
         if (source == nullptr) {
-            return nullptr;
+            return;
         }
 
-        Node<T>* newHead = new Node<T>(source->data);
-        Node<T>* currentNewNode = newHead;
+        orighead = new Node<T>(source->data);
+        Node<T>* currentNewNode = orighead;
         const Node<T>* currentSourceNode = source->next;
 
         while (currentSourceNode != nullptr) {
@@ -147,8 +142,6 @@ private:
             currentNewNode = currentNewNode->next;
             currentSourceNode = currentSourceNode->next;
         }
-
-        return newHead;
     }
 };
 

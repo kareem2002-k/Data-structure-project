@@ -2,32 +2,32 @@
 #define BANKACCOUNT_H
 
 #include <string>
-#include <vector>
+#include "Transaction.h" // Assuming Transaction class is declared in Transaction.h
 #include <sstream>
 #include <iomanip>
-#include "Transaction.h"
-#include "LinkedList.cpp"
+#include <Transaction.h>
+#include <LinkedList.cpp>
+using namespace std;
+
 class BankAccount {
 private:
     static int nextAccountNumber;
-    std::string accountNumber;
-    std::string accountHolderName;
-    std::string accountHolderNumber;
-    std::string accountType;
+    string accountNumber;
+//    string accountHolderNumber;
+    string accountType;
     double balance;
     LinkedList<Transaction> transactions;
 
 public:
-    BankAccount(const std::string& accHolderName, const std::string& accHolderNumber,
-                const std::string& accType, double initBalance);
+    BankAccount(const string& accType, double initBalance);
 
-    const std::string& getAccountNumber() const;
-    const std::string& getAccountHolderName() const;
-    void setAccountHolderName(const std::string& name);
-    const std::string& getAccountHolderNumber() const;
-    void setAccountHolderNumber(const std::string& number);
-    const std::string& getAccountType() const;
-    void setAccountType(const std::string& type);
+    const string& getAccountNumber() const;
+//    const string& getAccountHolderName() const;
+//    void setAccountHolderName(const string& name);
+//    const string& getAccountHolderNumber() const;
+//    void setAccountHolderNumber(const string& number);
+    const string& getAccountType() const;
+    void setAccountType(const string& type);
     double getBalance() const;
     void setBalance(double newBalance);
 
@@ -35,9 +35,9 @@ public:
     void displayTransactionHistory();
 
 private:
-    static std::string generateAccountNumber();
+    static string generateAccountNumber();
 };
-std::ostream& operator<<(std::ostream& os, const BankAccount& account);
+ostream& operator<<(ostream& os, const BankAccount& account);
 
 
 #endif // BANKACCOUNT_H

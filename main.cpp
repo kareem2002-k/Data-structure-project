@@ -5,6 +5,10 @@
 using namespace std;
 
 int main() {
+    // Test the BankAccount class
+    BankAccount account1("Savings", 1500.0);
+    BankAccount account2("Checking", 2000.0);
+    BankAccount accountM("Checking", 3000.0);
     // Test BankAccount class
     std::cout << "===== BankAccount Class Test =====\n";
 
@@ -38,40 +42,40 @@ int main() {
     // Test transaction history
     account1.displayTransactionHistory();
 
-    // Test Transaction class
-    std::cout << "===== Transaction Class Test =====\n";
+    cout << "----------------" << endl;
+    cout << account1;
+    cout << "----------------" << endl;
 
-    // Test constructor and display
-    Transaction deposit(Transaction::DEPOSIT, 100.0);
-    Transaction withdrawal(Transaction::WITHDRAW, 50.0);
-    Transaction balanceInquiry(Transaction::BALANCE_INQUIRY, 0.0);
+    // Test the List class
+    LinkedList<BankAccount> accountList;
+    accountList.append(account1);
+    accountList.append(account2);
+    accountList.insert(1, accountM);
 
-    std::cout << "Deposit Transaction:\n" << deposit;
-    std::cout << "Withdrawal Transaction:\n" << withdrawal;
-    std::cout << "Balance Inquiry Transaction:\n" << balanceInquiry;
+    // Display the initial account list
+    cout << "\nInitial Account List:\n" << accountList << endl;
 
-    // Test LinkedList class
-    std::cout << "===== LinkedList Class Test =====\n";
+    // Test the remaining functions
+    cout << "\nTesting Remaining LinkedList Functions:\n";
+    cout << "Size of the list: " << accountList.getSize() << endl;
 
-    // Test LinkedList operations
-    LinkedList<int> intList;
-    intList.insert(0, 1);
-    intList.insert(1, 2);
-    intList.insert(1, 3);
-    std::cout << "Integer LinkedList:\n" << intList;
+    // Erase an element
+    accountList.erase(0);
+    cout << "\nAfter erasing the first element:\n" << accountList << endl;
 
-    intList.erase(1);
-    std::cout << "After Erasing at Index 1:\n" << intList;
+    // Insert at a specific index
+    BankAccount accountX("Savings", 3000.0);
+    accountList.insert(1, accountX);
+    cout << "\nAfter inserting at index 1:\n" << accountList << endl;
 
-    // Intensive test for LinkedList
-    LinkedList<std::string> stringList;
-    stringList.insert(0, "apple");
-    stringList.insert(1, "banana");
-    stringList.insert(1, "orange");
-    std::cout << "String LinkedList:\n" << stringList;
+    // Append an element
+    BankAccount accountY("Checking", 4000.0);
+    accountList.append(accountY);
+    cout << "\nAfter appending:\n" << accountList << endl;
 
-    stringList.erase(1);
-    std::cout << "After Erasing at Index 1:\n" << stringList;
+    // Clear the list
+    accountList.clear();
+    cout << "\nAfter clearing the list:\n" << accountList << endl;
 
     return 0;
 }
