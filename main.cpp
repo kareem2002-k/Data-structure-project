@@ -8,11 +8,13 @@ using namespace std;
 int main() {
 
     fstream fout;
-    unsigned short x = 8675;
+    unsigned short x = 25154;
+    unsigned short y = 13848;
     fout.open("file.dat", ios::out | ios :: binary); // open file for writing as binary
     if (fout)
     {
         fout.write(reinterpret_cast<char*>(&x), sizeof(unsigned short));
+        fout.write(reinterpret_cast<char*>(&y), sizeof(unsigned short));
         fout.close();
     }
     else
