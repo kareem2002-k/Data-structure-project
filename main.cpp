@@ -7,21 +7,85 @@ using namespace std;
 
 int main() {
 
-    fstream fout;
-    unsigned short x = 25154;
-    unsigned short y = 13848;
-    fout.open("file.dat", ios::out | ios :: binary); // open file for writing as binary
+
+//    // Test the BankAccount class
+   BankAccount account1("Savings", 1090.0);
+    fstream();
+fstream fout;
+    //  unsigned short y = 13848;
+    fout.open("flvvvve.dat", ios::out | ios :: binary); // open file for writing as binary
     if (fout)
     {
-        fout.write(reinterpret_cast<char*>(&x), sizeof(unsigned short));
-        fout.write(reinterpret_cast<char*>(&y), sizeof(unsigned short));
+        fout.write(reinterpret_cast<char*>(&account1), sizeof(BankAccount));
+        //fout.write(reinterpret_cast<char*>(&x), sizeof(unsigned short));
+        // fout.write(reinterpret_cast<char*>(&y), sizeof(unsigned short));
         fout.close();
     }
     else
-    cout << "Error opening file!\n";
+        cout << "Error opening file!\n";
 
-//    // Test the BankAccount class
-//    BankAccount account1("Savings", 1500.0);
+    std::ifstream fin;  // Use ifstream for reading
+    fin.open("flvvvve.dat", std::ios::in | std::ios::binary);  // Open file for reading as binary
+
+    if (fin.is_open()) {
+        BankAccount account2("Checking", 2000.0);  // Create an empty BankAccount object
+
+        // Read the binary data and deserialize into the BankAccount object
+        fin.read(reinterpret_cast<char*>(&account2), sizeof(BankAccount));
+
+        fin.close();
+
+        // Now, 'account1' holds the deserialized data
+        // You can use 'account1' as needed
+
+      //  std::cout << "Account Name: " << account1.getName() << std::endl;
+        std::cout << "Balance: " << account2.getBalance() << std::endl;
+    } else {
+        std::cout << "Error opening file!\n";
+    }
+
+
+
+//    // Create an array of BankAccount objects
+//    const int NUM_ACCOUNTS = 3;
+//    BankAccount accounts[NUM_ACCOUNTS ] = {
+//            BankAccount("Savings", 1090.0),
+//            BankAccount("Checking", 2000.0),
+//            BankAccount("Investment", 5000.0)
+//    };
+//
+//    // Write the array of BankAccount objects to a binary file
+//    std::ofstream fout("flvvvve.dat", std::ios::out | std::ios::binary);
+//
+//    if (fout.is_open()) {
+//        fout.write(reinterpret_cast<char*>(&accounts), sizeof(BankAccount) * NUM_ACCOUNTS  );
+//        fout.close();
+//    } else {
+//        std::cout << "Error opening file for writing!\n";
+//        return 1;
+//    }
+//
+//    // Read the array of BankAccount objects from the binary file
+//    std::ifstream fin("flvvvve.dat", std::ios::in | std::ios::binary);
+//
+//    if (fin.is_open()) {
+//        BankAccount readAccounts[NUM_ACCOUNTS  ];
+//
+//
+//        // Read the binary data and deserialize into the array of BankAccount object
+//        fin.read(reinterpret_cast<char*>(&readAccounts), sizeof(BankAccount) * NUM_ACCOUNTS  );
+//
+//        fin.close();
+//
+//        // Display the balances of the read accounts
+//        for (int i = 0; i < NUM_ACCOUNTS  ; ++i) {
+//            std::cout << "Balance for Account " << i + 1 << ": " << readAccounts[i].getBalance() << std::endl;
+//        }
+//    } else {
+//        std::cout << "Error opening file for reading!\n";
+//        return 1;
+//    }
+
 //    cout << "Initial Account State:\n" << account1;
 //
 //    BankAccount account2("Checking", 2000.0);
