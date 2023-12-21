@@ -10,8 +10,9 @@ BankAccount::BankAccount(const string& accType, double initBalance)
     transactions = LinkedList<Transaction>();
 }
 
-
-
+BankAccount::BankAccount() : accountNumber(generateAccountNumber()), balance(0.0) {
+    transactions = LinkedList<Transaction>();
+}
 const string& BankAccount::getAccountNumber() const {
     return accountNumber;
 }

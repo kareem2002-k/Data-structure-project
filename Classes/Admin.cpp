@@ -4,8 +4,8 @@
 // Constructor implementation
 Admin::Admin(const string& username, const string& password,
              const string& phonenum, const string& address,
-             const BankAccount& bankAccount, const UserRole& role)
-        : User(username, password, phonenum, address, bankAccount, ADMIN) {
+             const BankAccount& bankAccount, const User::UserRole& role)
+        : User(username.c_str(), password.c_str(), phonenum.c_str(), address.c_str(), bankAccount, role) {
 
 }
 

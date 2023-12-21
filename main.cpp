@@ -4,54 +4,65 @@
 #include "Classes/Transaction.h"
 #include "Classes/User.h"
 #include <fstream>
+#include <vector>
+#include <cstring>
+
 using namespace std;
 
 int main() {
 
+    // Test the BankAccount class
+    BankAccount account1("Savings", 1090.0);
+    User user1("JohnDoe", "password123", "123456789",
+               "123 Main St", account1, User::UserRole::CUSTOMER);
 
-//    // Test the BankAccount class
-   BankAccount account1("Savings", 1090.0);
-    User user1("JohnDoe", "password123", "123456789", "123 Main St", account1, User::UserRole(User::CUSTOMER));
-
-//    fstream();
     ofstream fout; // Use ofstream for writing
-    //  unsigned short y = 13848;
-    fout.open("file.dat", ios::out | ios :: binary); // open file for writing as binary
-    if (fout)
-    {
-        fout.write(reinterpret_cast<char*>(&account1), sizeof(BankAccount));
-        fout.write(reinterpret_cast<char*>(&user1), sizeof(User));
-        //fout.write(reinterpret_cast<char*>(&x), sizeof(unsigned short));
-        // fout.write(reinterpret_cast<char*>(&y), sizeof(unsigned short));
-        fout.close();
-    }
-    else
-        cout << "Error opening file!\n";
+    fout.open("file.bin", ios::out | ios::binary); // open file for writing as binary
+    if (fout) {
+//        fout.write((char*)(&user1), sizeof(User));
+        const char* testData = "Hello, this is a test data!";
+        size_t dataSize = strlen(testData);
 
-    std::ifstream fin;  // Use ifstream for reading
-    fin.open("file.dat", std::ios::in | std::ios::binary);  // Open file for reading as binary
+        // Write the binary data to the file
+        fout.write(testData, dataSize);
+
+        // Close the file
+        fout.close();
+    } else {
+        cout << "Error opening file for writing!\n";
+        return 1;
+    }
+
+    ifstream fin;  // Use ifstream for reading
+    fin.open("file.bin", ios::in | ios::binary);  // Open file for reading as binary
 
     if (fin) {
-        BankAccount account2("Checking", 2000.0);  // Create an empty BankAccount object
-        User user2("JaneDoe", "password321", "452656356", "123 Main St", account2, User::UserRole(User::CUSTOMER));
+//        User testUser;
+//        fin.read((char*)(&testUser), sizeof(User));
+        // Find the length of the file
+        fin.seekg(0, std::ios::end);
+        size_t fileSize = fin.tellg();
+        fin.seekg(0, std::ios::beg);
 
-        // Read the binary data and deserialize into the BankAccount object
-        fin.read(reinterpret_cast<char*>(&account2), sizeof(BankAccount));
-        fin.read(reinterpret_cast<char*>(&user2), sizeof(User));
+        // Allocate memory to store the content of the file
+        char* fetchedData = new char[fileSize];
 
+        // Read the binary data from the file
+        fin.read(fetchedData, fileSize);
+
+        // Close the file
         fin.close();
 
-        // Now, 'account1' holds the deserialized data
-        // You can use 'account1' as needed
-        cout << user2;
-//        cout << account2;
+        // Display the fetched data
+        std::cout << "Fetched Data: " << fetchedData << std::endl;
 
-      //  std::cout << "Account Name: " << account1.getName() << std::endl;
-//        std::cout << "Balance: " << account2.getBalance() << std::endl;
+        // Free the allocated memory
+        delete[] fetchedData;
+        // Now, 'testUser' holds the deserialized data
+//        cout << testUser;
     } else {
-        std::cout << "Error opening file!\n";
+        cout << "Error opening file!\n";
     }
-
 
 
 //    // Create an array of BankAccount objects

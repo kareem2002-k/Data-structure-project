@@ -20,6 +20,7 @@ private:
 
 public:
     BankAccount(const string& accType, double initBalance);
+    BankAccount();
 
     const string& getAccountNumber() const;
 //    const string& getAccountHolderName() const;

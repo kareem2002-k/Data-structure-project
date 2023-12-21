@@ -2,9 +2,7 @@
 #define DATA_STRUCTURE_PROJECT_USER_H
 
 #include <iostream>
-#include <string>
 #include "BankAccount.h"
-using namespace std;
 
 class User {
 public:
@@ -13,37 +11,39 @@ public:
         CUSTOMER
     };
 
-    User(const string& username, const string& password,
-         const string& phonenum, const string& address,
+    User(const char* username, const char* password,
+         const char* phonenum, const char* address,
          const BankAccount& bankAccount, const UserRole& role);
 
+    User();
+
     // Getters
-    const string& getUsername() const;
-    const string& getPassword() const;
-    const string& getPhonenum() const;
-    const string& getAddress() const;
+    const char* getUsername() const;
+    const char* getPassword() const;
+    const char* getPhonenum() const;
+    const char* getAddress() const;
     const BankAccount& getBankAccount() const;
     UserRole getRole() const;
 
     // Setters
-    void setUsername(const string& newUsername);
-    void setPassword(const string& newPassword);
-    void setPhonenum(const string& newPhonenum);
-    void setAddress(const string& newAddress);
+    void setUsername(const char* newUsername);
+    void setPassword(const char* newPassword);
+    void setPhonenum(const char* newPhonenum);
+    void setAddress(const char* newAddress);
     void setBankAccount(const BankAccount& newBankAccount);
     void setRole(UserRole newRole);
 
 protected:
-    string username;
-    string password;
-    string phonenum;
-    string address;
+    char username[256];  
+    char password[256];  
+    char phonenum[256];  
+    char address[256];   
     BankAccount bankAccount;
     UserRole role;
 
-    void displayUserDetails(ostream& out) const;
+    void displayUserDetails(std::ostream& out) const;
 
-    friend ostream& operator<<(ostream& os, const User& user);
+    friend std::ostream& operator<<(std::ostream& os, const User& user);
 };
 
-#endif //DATA_STRUCTURE_PROJECT_USER_H
+#endif // DATA_STRUCTURE_PROJECT_USER_H
