@@ -1,5 +1,3 @@
-// User.cpp
-
 #include "User.h"
 
 User::User(const string& username, const string& password,
