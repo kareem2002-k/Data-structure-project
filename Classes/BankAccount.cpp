@@ -86,15 +86,19 @@ std::string BankAccount::generateAccountNumber() {
     return ss.str();  // Add this line to return the generated account number
 }
 
-std::ostream& operator<<(std::ostream& os, const BankAccount& account) {
-      os << "--------------------------------------\n"
-         << "          BANK ACCOUNT DETAILS         \n"
-         << "--------------------------------------\n";
-    // "Account Holder: " << account.getAccountHolderName() << "\n"
-    os << "Account Number: " << account.getAccountNumber() << "\n"
-       << "Account Type: " << account.getAccountType() << "\n"
-       << "Balance: $" << std::fixed << std::setprecision(2) << account.getBalance() << "\n"
+void BankAccount::displayAccountDetails(ostream& out) const {
+    out << "--------------------------------------\n"
+       << "          BANK ACCOUNT DETAILS         \n"
        << "--------------------------------------\n";
+    // "Account Holder: " << account.getAccountHolderName() << "\n"
+    out << "Account Number: " << accountNumber << "\n"
+       << "Account Type: " << accountType << "\n"
+       << "Balance: $" << std::fixed << std::setprecision(2) << balance << "\n"
+       << "--------------------------------------\n";
+}
+
+std::ostream& operator<<(std::ostream& os, const BankAccount& account) {
+    account.displayAccountDetails(os);
     return os;
 }
 

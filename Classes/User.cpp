@@ -57,12 +57,21 @@ void User::setRole(User::UserRole newRole) {
     role = newRole;
 }
 
-void User::displayUserDetails() const {
-    cout << "Username: " << username << "\n"
+void User::displayUserDetails(ostream& out) const {
+    out << "--------------------------------------\n"
+        << "          User DETAILS         \n"
+        << "--------------------------------------\n"
+        << "Username: " << username << "\n"
          << "Password: " << password << "\n"
          << "Phone Number: " << phonenum << "\n"
          << "Address: " << address << "\n"
          << "Role: " << (role == ADMIN ? "Admin" : "Customer") << "\n"
-         << "Bank Account Details: " << bankAccount << "\n";
+         << "Bank Account Details: \n" << bankAccount << "\n";
+//        << "--------------------------------------\n";
 
+}
+
+ostream& operator<<(ostream& os, const User& user){
+    user.displayUserDetails(os);
+    return os;
 }

@@ -33,6 +33,7 @@ public:
 
     void performTransaction(Transaction::TransactionType transactionType, double amount);
     void displayTransactionHistory();
+    void displayAccountDetails(ostream& out) const;
 
 private:
     static string generateAccountNumber();
