@@ -1,7 +1,3 @@
-//
-// Created by IP3 on 11/12/2023.
-//
-
 #include "Customer.h"
 #include <iostream>
 #include <iomanip>
