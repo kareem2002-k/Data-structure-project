@@ -43,7 +43,9 @@ protected:
     BankAccount bankAccount;
     UserRole role;
 
-    void displayUserDetails() const;
+    void displayUserDetails(ostream& out) const;
+
+    friend ostream& operator<<(ostream& os, const User& user);
 };
 
 #endif //DATA_STRUCTURE_PROJECT_USER_H

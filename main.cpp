@@ -2,6 +2,7 @@
 #include <string>
 #include "Classes/BankAccount.h"
 #include "Classes/Transaction.h"
+#include "Classes/User.h"
 #include <fstream>
 using namespace std;
 
@@ -10,13 +11,16 @@ int main() {
 
 //    // Test the BankAccount class
    BankAccount account1("Savings", 1090.0);
-    fstream();
-fstream fout;
+    User user1("JohnDoe", "password123", "123456789", "123 Main St", account1, User::UserRole(User::CUSTOMER));
+
+//    fstream();
+    ofstream fout; // Use ofstream for writing
     //  unsigned short y = 13848;
-    fout.open("flvvvve.dat", ios::out | ios :: binary); // open file for writing as binary
+    fout.open("file.dat", ios::out | ios :: binary); // open file for writing as binary
     if (fout)
     {
         fout.write(reinterpret_cast<char*>(&account1), sizeof(BankAccount));
+        fout.write(reinterpret_cast<char*>(&user1), sizeof(User));
         //fout.write(reinterpret_cast<char*>(&x), sizeof(unsigned short));
         // fout.write(reinterpret_cast<char*>(&y), sizeof(unsigned short));
         fout.close();
@@ -25,21 +29,25 @@ fstream fout;
         cout << "Error opening file!\n";
 
     std::ifstream fin;  // Use ifstream for reading
-    fin.open("flvvvve.dat", std::ios::in | std::ios::binary);  // Open file for reading as binary
+    fin.open("file.dat", std::ios::in | std::ios::binary);  // Open file for reading as binary
 
-    if (fin.is_open()) {
+    if (fin) {
         BankAccount account2("Checking", 2000.0);  // Create an empty BankAccount object
+        User user2("JaneDoe", "password321", "452656356", "123 Main St", account2, User::UserRole(User::CUSTOMER));
 
         // Read the binary data and deserialize into the BankAccount object
         fin.read(reinterpret_cast<char*>(&account2), sizeof(BankAccount));
+        fin.read(reinterpret_cast<char*>(&user2), sizeof(User));
 
         fin.close();
 
         // Now, 'account1' holds the deserialized data
         // You can use 'account1' as needed
+        cout << user2;
+//        cout << account2;
 
       //  std::cout << "Account Name: " << account1.getName() << std::endl;
-        std::cout << "Balance: " << account2.getBalance() << std::endl;
+//        std::cout << "Balance: " << account2.getBalance() << std::endl;
     } else {
         std::cout << "Error opening file!\n";
     }
