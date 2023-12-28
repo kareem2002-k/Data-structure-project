@@ -1,4 +1,5 @@
 #include "Transaction.h"
+#include <sstream>
 
 Transaction::Transaction(std::string transactionType, double transactionAmount)
     : type(transactionType), amount(transactionAmount) {
@@ -47,6 +48,19 @@ std::ostream& operator<<(std::ostream& os, const Transaction& transaction) {
     os << "\n";
     os << "--------------------------------------\n";
     return os;
+}
+
+Transaction Transaction::deserialize(const std::string& str) {
+    std::istringstream iss(str);
+    Transaction transaction;
+    char pipe;
+
+    if (std::getline(iss, transaction.type, '|') &&
+        iss >> transaction.amount >> pipe) {
+        std::getline(iss, transaction.date);
+    }
+
+    return transaction;
 }
 
 
