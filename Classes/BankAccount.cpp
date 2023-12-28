@@ -48,12 +48,12 @@ void BankAccount::setBalance(double newBalance) {
     balance = newBalance;
 }
 
-void BankAccount::performTransaction(Transaction::TransactionType transactionType, double amount) {
-    if (transactionType == Transaction::DEPOSIT) {
+void BankAccount::performTransaction(std::string transactionType, double amount) {
+    if (transactionType == "deposit") {
         balance += amount;
         Transaction currentTransaction = Transaction(transactionType, amount);
         transactions.append(currentTransaction);
-    } else if (transactionType == Transaction::WITHDRAW) {
+    } else if (transactionType == "withdraw") {
 
         if (balance >= amount) {
             balance -= amount;
@@ -64,7 +64,7 @@ void BankAccount::performTransaction(Transaction::TransactionType transactionTyp
             return;
         }
     }
-    else if(transactionType == Transaction::BALANCE_INQUIRY){
+    else if(transactionType == "inquiry"){
         Transaction currentTransaction = Transaction(transactionType, 0);
         transactions.append(currentTransaction);
 

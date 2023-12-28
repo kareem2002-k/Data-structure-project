@@ -15,19 +15,21 @@ public:
     };
 
 private:
-    TransactionType type;
+    std::string type;
     double amount;
     string date;
 
 public:
-    Transaction(TransactionType transactionType, double transactionAmount);
+    Transaction(std::string transactionType, double transactionAmount);
 
     // Getters for transaction details
-    TransactionType getType() const;
+    std::string getType() const;
     double getAmount() const;
     const string& getDate() const;
+    std::string serialize() const;
 };
 
 ostream& operator<<(ostream& os, const Transaction& transaction);
 
 #endif // TRANSACTION_H
+

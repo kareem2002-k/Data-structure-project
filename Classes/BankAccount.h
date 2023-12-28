@@ -31,7 +31,7 @@ public:
     double getBalance() const;
     void setBalance(double newBalance);
 
-    void performTransaction(Transaction::TransactionType transactionType, double amount);
+    void performTransaction(std::string transactionType, double amount);
     void displayTransactionHistory();
     void displayAccountDetails(ostream& out) const;
 
