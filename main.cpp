@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "BankAccount.h"
-#include "Transaction.h"
+#include "Classes/BankAccount.h"
+#include "Classes/Transaction.h"
 #include <fstream>
 #include "vector"
 using namespace::std;
@@ -36,8 +36,8 @@ int main() {
        account1.accountNumber = "123";
        account1.accountType = "Savings";
        account1.balance = 1000;
-    account1.performTransaction("deposit", 100.0);
-    account1.performTransaction("deposit", 800.0);
+       account1.performTransaction("deposit", 100.0);
+       account1.performTransaction("deposit", 800.0);
 
     
 //
