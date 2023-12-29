@@ -352,43 +352,109 @@ vector<string> splitString(const string& input, const string& delimiter) {
     return tokens;
 }
 
+
+#include <cstdlib>
+#include <ctime>
+#include <chrono>
+#include <random>
+
+// Function to create random accounts and push them to the vector
+//void createRandomAccounts(std::vector<BankAccount>& accounts, int numAccounts) {
+//    // Seed for random number generation
+////    auto seed = std::chrono::high_resolution_clock::now().time_since_epoch().count();
+////    std::srand(static_cast<unsigned>(seed));
+//    std::random_device rd;
+//    std::mt19937 gen(rd());
+//
+//
+//    for (int i = 0; i < numAccounts; ++i) {
+//        // Randomize account type (Savings or Checking)
+////        std::string randomAccountType = (std::rand() % 2 == 0) ? "Savings" : "Checking";
+//        std::uniform_int_distribution<> distribution(0, 1);
+//        std::string randomAccountType = (distribution(gen) == 0) ? "Savings" : "Checking";
+//
+//        // Generate random initial balance
+//        std::uniform_real_distribution<> balanceDistribution(1000.0, 50000.0);
+//        double randomInitialBalance = balanceDistribution(gen);
+////        double randomInitialBalance = static_cast<double>(std::rand() % 5000 + 500);
+//
+//        // Create a random account
+//        BankAccount randomAccount(randomAccountType, randomInitialBalance);
+//
+//        // Perform random transactions (e.g., DEPOSIT and WITHDRAW)
+////        int numTransactions = std::rand() % 5 + 1;
+////        for (int j = 0; j < numTransactions; ++j) {
+////            std::string transactionType = (std::rand() % 2 == 0) ? "DEPOSIT" : "WITHDRAW";
+////            double transactionAmount = static_cast<double>(std::rand() % 1000 + 100);
+////            randomAccount.performTransaction(transactionType, transactionAmount);
+////        }
+//        std::uniform_int_distribution<> transactionCountDistribution(0, 3);
+//        int numTransactions = transactionCountDistribution(gen);
+//        for (int j = 0; j < numTransactions; ++j) {
+//            // Generate a random number to determine transaction type
+//            std::uniform_int_distribution<> transactionTypeDistribution(0, 1);
+//            std::string transactionType = (transactionTypeDistribution(gen) == 0) ? "DEPOSIT" : "WITHDRAW";
+//
+//            // Generate random transaction amount
+//            std::uniform_real_distribution<> transactionAmountDistribution(100.0, 1000.0);
+//            double transactionAmount = transactionAmountDistribution(gen);
+//
+//            // Perform the transaction
+//            randomAccount.performTransaction(transactionType, transactionAmount);
+//        }
+//
+//        // Push the random account to the vector
+//        accounts.push_back(randomAccount);
+//    }
+//}
+
 int main() {
-    // Create an array of BankAccount objects with transactions
-    vector<BankAccount> accounts;
+    // Vector to store the accounts
+//    std::vector<BankAccount> accounts;
+//    accounts.clear();
 
-    accounts.clear();
-    BankAccount account1("Savings", 1090.0);
+    // Create 50 random accounts
+//    createRandomAccounts(accounts, 50);
 
-    account1.performTransaction("DEPOSIT", 500.0);
-    account1.performTransaction("WITHDRAW", 200.0);
+    // Display the account details
+//    std::cout << "Randomly Generated Accounts before encryption: " << std::endl;
+//    for (const auto& account : accounts) {
+//        std::cout << account << std::endl;
+//    }
 
-    accounts.push_back(account1);
 
-    BankAccount account3("Savings", 1500.0);
-    account3.performTransaction("DEPOSIT", 200000.0);
-
-    accounts.push_back(account3);
-
-    BankAccount account2("Checking", 2000.0);
-    account2.performTransaction("DEPOSIT", 1000.0);
-
-    accounts.push_back(account2);
-
-    BankAccount account6("Checking", 3000.0);
-    account6.performTransaction("DEPOSIT", 1000.0);
-    account6.performTransaction("WITHDRAW", 400.0);
-
-    accounts.push_back(account6);
-
-    BankAccount account4("Checking", 3000.0);
-    account4.performTransaction("DEPOSIT", 1000.0);
-
-    accounts.push_back(account4);
-
-    BankAccount account5("Checking", 3000.0);
-    account5.performTransaction("DEPOSIT", 1000.0);
-
-    accounts.push_back(account5);
+//    BankAccount account1("Savings", 1090.0);
+//
+//    account1.performTransaction("DEPOSIT", 500.0);
+//    account1.performTransaction("WITHDRAW", 200.0);
+//
+//    accounts.push_back(account1);
+//
+//    BankAccount account3("Savings", 1500.0);
+//    account3.performTransaction("DEPOSIT", 200000.0);
+//
+//    accounts.push_back(account3);
+//
+//    BankAccount account2("Checking", 2000.0);
+//    account2.performTransaction("DEPOSIT", 1000.0);
+//
+//    accounts.push_back(account2);
+//
+//    BankAccount account6("Checking", 3000.0);
+//    account6.performTransaction("DEPOSIT", 1000.0);
+//    account6.performTransaction("WITHDRAW", 400.0);
+//
+//    accounts.push_back(account6);
+//
+//    BankAccount account4("Checking", 3000.0);
+//    account4.performTransaction("DEPOSIT", 1000.0);
+//
+//    accounts.push_back(account4);
+//
+//    BankAccount account5("Checking", 3000.0);
+//    account5.performTransaction("DEPOSIT", 1000.0);
+//
+//    accounts.push_back(account5);
 
     // Your encryption key (make sure it's a strong key in a real scenario)
     string encryptionKey = "SecretKey";
@@ -396,31 +462,31 @@ int main() {
     // Serialize each object in the array and encrypt
     vector<string> encryptedStrings;
 
-    for (const auto& account : accounts) {
-        string serializedObject = account.serialize();
-        string encryptedString = xorEncryptDecrypt(serializedObject, encryptionKey);
-        encryptedStrings.push_back(encryptedString);
-    }
+//    for (const auto& account : accounts) {
+//        string serializedObject = account.serialize();
+//        string encryptedString = xorEncryptDecrypt(serializedObject, encryptionKey);
+//        encryptedStrings.push_back(encryptedString);
+//    }
 
 
 
     // Open a binary file for writing
-    std::ofstream outFile("encrypted_bank_accounts.bin", std::ios::binary);
+//    std::ofstream outFile("encrypted_bank_accounts.bin", std::ios::binary);
 
-    if (outFile.is_open()) {
-        // Write the encrypted strings to the file, separated by a newline character
-        for (const auto& encryptedString : encryptedStrings) {
-            outFile << encryptedString << "/012210/";
-        }
-
-        // Close the file
-        outFile.close();
-
-        cout << "Bank accounts encrypted and stored in 'encrypted_bank_accounts.bin'\n" << endl;
-    } else {
-        cerr << "Unable to open the file for writing." << endl;
-        return 1;
-    }
+//    if (outFile.is_open()) {
+//        // Write the encrypted strings to the file, separated by a newline character
+//        for (const auto& encryptedString : encryptedStrings) {
+//            outFile << encryptedString << "/012210/";
+//        }
+//
+//        // Close the file
+//        outFile.close();
+//
+//        cout << "Bank accounts encrypted and stored in 'encrypted_bank_accounts.bin'\n" << endl;
+//    } else {
+//        cerr << "Unable to open the file for writing." << endl;
+//        return 1;
+//    }
 
     // Open the file for reading
     std::ifstream inFile("encrypted_bank_accounts.bin", std::ios::binary);
@@ -437,7 +503,7 @@ int main() {
 
         // Split the content into lines based on the terminator "/012210/"
         vector<string> lines = splitString(fileContent, "/012210/");
-        cout<<endl;
+        cout<<"Printing encrypted:\n"<<endl;
         for(string &s : lines){
             cout << s << endl;
         }

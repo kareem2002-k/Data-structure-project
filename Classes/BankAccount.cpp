@@ -135,17 +135,19 @@ void BankAccount::performTransaction(string transactionType, double amount) {
         balance += amount;
         Transaction currentTransaction = Transaction(transactionType, amount);
         transactions.push_back(currentTransaction);
-    } else if (transactionType == "WITHDRAW") {
+    }
+    else if (transactionType == "WITHDRAW") {
 
         if (balance >= amount) {
             balance -= amount;
             Transaction currentTransaction = Transaction(transactionType, amount);
             transactions.push_back(currentTransaction);
         } else {
-            cerr << "Insufficient funds for withdrawal." << endl;
+            cerr << "Insufficient funds for withdrawal.\nBalance Unchanged" << endl;
             return;
         }
     }
+    //TODO: this should not be a transaction but an option in the menu
     else if(transactionType == "BALANCE_INQUIRY"){
         Transaction currentTransaction = Transaction(transactionType, 0);
         transactions.push_back(currentTransaction);
@@ -164,8 +166,6 @@ void BankAccount::displayTransactionHistory(){
     }
     cout<<getBalance()<<endl;
 }
-
-
 
 std::string BankAccount::generateAccountNumber() {
     std::stringstream ss;
