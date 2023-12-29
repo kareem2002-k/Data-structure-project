@@ -1,4 +1,4 @@
-#include "BankAccount.h"
+#include "BankAccount.hpp"
 #include <iostream>
 #include <iomanip>
 using namespace std;
@@ -49,12 +49,12 @@ void BankAccount::setBalance(double newBalance) {
     balance = newBalance;
 }
 
-void BankAccount::performTransaction(Transaction::TransactionType transactionType, double amount) {
-    if (transactionType == Transaction::DEPOSIT) {
+void BankAccount::performTransaction(std::string transactionType, double amount) {
+    if (transactionType == "deposit") {
         balance += amount;
         Transaction currentTransaction = Transaction(transactionType, amount);
         transactions.append(currentTransaction);
-    } else if (transactionType == Transaction::WITHDRAW) {
+    } else if (transactionType == "withdraw") {
 
         if (balance >= amount) {
             balance -= amount;
@@ -65,7 +65,7 @@ void BankAccount::performTransaction(Transaction::TransactionType transactionTyp
             return;
         }
     }
-    else if(transactionType == Transaction::BALANCE_INQUIRY){
+    else if(transactionType == "inquiry"){
         Transaction currentTransaction = Transaction(transactionType, 0);
         transactions.append(currentTransaction);
 
@@ -99,3 +99,57 @@ std::ostream& operator<<(std::ostream& os, const BankAccount& account) {
     return os;
 }
 
+std::string BankAccount::serialize() const {
+    std::ostringstream oss;
+
+    // Serialize account information
+    oss << accountNumber << "," << accountType << "," << std::to_string(balance) << ",";
+
+    // Serialize transactions if the list is not empty
+    if (transactions.head != nullptr) {
+        auto current = transactions.head;
+
+        while (current != nullptr) {
+            // Serialize each transaction and add a comma if not the last one
+            oss << current->data.serialize();
+            current = current->next;
+            if (current != nullptr) {
+                oss << ",";
+            }
+        }
+    }
+
+    std::cout << "Serialized BankAccount: " << oss.str() << std::endl;
+
+    return oss.str();
+}
+
+
+// Deserialization method implementation
+BankAccount BankAccount::deserialize(const std::string& str) {
+    std::istringstream iss(str);
+    BankAccount bankAccount;
+    char comma;
+
+    if (std::getline(iss, bankAccount.accountNumber, ',') &&
+        std::getline(iss, bankAccount.accountType, ',')) {
+        // Read balance as a string and convert it to double
+        std::string balanceStr;
+        if (std::getline(iss, balanceStr, ',')) {
+            std::istringstream(balanceStr) >> bankAccount.balance;
+        }
+
+        // Deserialize transactions
+        std::string transactionsStr;
+        std::getline(iss, transactionsStr);
+        std::istringstream transactionsIss(transactionsStr);
+        std::string transactionStr;
+        while (std::getline(transactionsIss, transactionStr, ',')) {
+            // Call deserialize for each transaction individually
+            Transaction transaction = Transaction::deserialize(transactionStr);
+            bankAccount.transactions.append(transaction);
+        }
+    }
+
+    return bankAccount;
+}

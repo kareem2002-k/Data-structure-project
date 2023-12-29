@@ -5,10 +5,13 @@
 #include <vector>
 #include <sstream>
 #include <iomanip>
-#include "Transaction.h"
+#include "Transaction.hpp"
 #include "LinkedList.cpp"
 class BankAccount {
 private:
+   
+
+public:
     static int nextAccountNumber;
     std::string accountNumber;
     std::string accountHolderName;
@@ -17,9 +20,13 @@ private:
     double balance;
     LinkedList<Transaction> transactions;
 
-public:
     BankAccount(const std::string& accHolderName, const std::string& accHolderNumber,
                 const std::string& accType, double initBalance);
+    // Constructor of BankAccount
+       BankAccount() : balance(0.0) , accountNumber(generateAccountNumber()) {
+           // Initialize an empty transaction list
+           transactions = LinkedList<Transaction>();
+       }
 
     const std::string& getAccountNumber() const;
     const std::string& getAccountHolderName() const;
@@ -31,8 +38,14 @@ public:
     double getBalance() const;
     void setBalance(double newBalance);
 
-    void performTransaction(Transaction::TransactionType transactionType, double amount);
+    void performTransaction(std::string transactionType, double amount);
     void displayTransactionHistory();
+    // Serialization method
+       std::string serialize() const;
+
+           // Deserialization method
+       static BankAccount deserialize(const std::string& str);
+
 
 private:
     static std::string generateAccountNumber();
