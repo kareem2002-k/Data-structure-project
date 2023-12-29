@@ -1,6 +1,8 @@
 #include "Transaction.h"
+#include <sstream>
 
-Transaction::Transaction(TransactionType transactionType, double transactionAmount)
+
+Transaction::Transaction(std::string transactionType, double transactionAmount)
     : type(transactionType), amount(transactionAmount) {
 
     // Get current date
@@ -10,7 +12,7 @@ Transaction::Transaction(TransactionType transactionType, double transactionAmou
 }
 
 // Implement getters
-Transaction::TransactionType Transaction::getType() const {
+std::string Transaction::getType() const {
     return type;
 }
 
@@ -27,17 +29,15 @@ std::ostream& operator<<(std::ostream& os, const Transaction& transaction) {
     os << "              TRANSACTION              \n";
     os << "--------------------------------------\n";
     os << "Date: " << transaction.getDate() << "\n";
-    switch (transaction.getType()) {
-        case Transaction::DEPOSIT:
-            os << "Type:    Deposit\n";
-            break;
-        case Transaction::WITHDRAW:
-            os << "Type:    Withdrawal\n";
-            break;
-        case Transaction::BALANCE_INQUIRY:
-            os << "Type:    Balance Inquiry\n";
-            break;
-    }
+    if (transaction.getType() == "deposit") {
+           os << "Type:    Deposit\n";
+       } else if (transaction.getType() == "withdraw") {
+           os << "Type:    Withdrawal\n";
+       } else if (transaction.getType() == "inquiry") {
+           os << "Type:    Balance Inquiry\n";
+       } else {
+           os << "Type:    Unknown\n"; // Handle the case when the type is none of the expected values
+       }
     os << "Amount:  $" << std::fixed << std::setprecision(2) << transaction.getAmount() << "\n";
     os << "--------------------------------------\n";
     os << "\n";
@@ -45,4 +45,22 @@ std::ostream& operator<<(std::ostream& os, const Transaction& transaction) {
     return os;
 }
 
+Transaction Transaction::deserialize(const std::string& str) {
+    std::istringstream iss(str);
+    Transaction transaction;
+    char pipe;
+
+    if (std::getline(iss, transaction.type, '|') &&
+        iss >> transaction.amount >> pipe) {
+        std::getline(iss, transaction.date);
+    }
+
+    return transaction;
+}
+
+// Serialization method for Transaction
+std::string Transaction::serialize() const {
+    return type + "|" + std::to_string(amount) + "|" + date;
+
+}
 

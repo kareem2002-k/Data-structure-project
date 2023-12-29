@@ -7,24 +7,31 @@
 
 class Transaction {
 public:
-    enum TransactionType {
-        DEPOSIT,
-        WITHDRAW,
-        BALANCE_INQUIRY
-    };
+//    enum TransactionType {
+//        DEPOSIT,
+//        WITHDRAW,
+//        BALANCE_INQUIRY
+//    };
 
 private:
-    TransactionType type;
+  
+public:
+    std::string type;
     double amount;
     std::string date;
 
-public:
-    Transaction(TransactionType transactionType, double transactionAmount);
+    Transaction(std::string transactionType, double transactionAmount);
 
     // Getters for transaction details
-    TransactionType getType() const;
+    std::string getType() const;
     double getAmount() const;
     const std::string& getDate() const;
+    static Transaction deserialize(const std::string& str);
+    std::string serialize() const;
+
+    Transaction() : amount(0) {}  // Set default values as needed
+
+
 };
 
 std::ostream& operator<<(std::ostream& os, const Transaction& transaction);

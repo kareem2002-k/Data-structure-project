@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "BankAccount.hpp"
-#include "Transaction.hpp"
+#include "BankAccount.h"
+#include "Transaction.h"
 #include <fstream>
 #include "vector"
 using namespace::std;
