@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "Classes/BankAccount.h"
-#include "Classes/Transaction.h"
+#include "BankAccount.hpp"
+#include "Transaction.hpp"
 #include <fstream>
 #include "vector"
 using namespace::std;
@@ -36,27 +36,54 @@ int main() {
        account1.accountNumber = "123";
        account1.accountType = "Savings";
        account1.balance = 1000;
-       account1.performTransaction("deposit", 100.0);
-       account1.performTransaction("deposit", 800.0);
+    account1.performTransaction("deposit", 100.0);
+    account1.performTransaction("deposit", 800.0);
 
     
-//
-//       BankAccount account2;
-//       account2.accountNumber = "456";
-//       account2.accountType = "Checking";
-//       account2.balance = 2000;
 
-       // Insert BankAccount objects into the linked list
-//    accounts.emplace_back(account2);
+       BankAccount account2;
+       account2.accountNumber = "456";
+       account2.accountType = "Checking";
+       account2.balance = 2000;
+    account2.performTransaction("deposit", 100.0);
+    account2.performTransaction("deposit", 800.0);
+
+
+    accounts.emplace_back(account2);
     
     
     
-           accounts.emplace_back(account1);
+    BankAccount account3;
+    account3.accountNumber = "44444444";
+    account3.accountType = "Checking";
+    account3.balance = 200;
+    account3.performTransaction("deposit", 100.0);
+    account3.performTransaction("deposit", 800.0);
+
+
+ accounts.emplace_back(account3);
+    
+    BankAccount account4;
+    account4.accountNumber = "44444444";
+    account4.accountType = "Checking";
+    account4.balance = 200;
+    account4.performTransaction("deposit", 100.0);
+    account4.performTransaction("deposit", 800.0);
+
+
+ accounts.emplace_back(account4);
+    
+    
+ 
+ 
+    
+    
+    
+    accounts.emplace_back(account1);
 
     
     
     
-    cout<<"iam here"<<endl<<accounts[0].transactions<<endl;
 
 
     // Your encryption key (make sure it's a strong key in a real scenario)

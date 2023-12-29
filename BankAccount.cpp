@@ -1,4 +1,4 @@
-#include "BankAccount.h"
+#include "BankAccount.hpp"
 #include <iostream>
 #include <iomanip>
 using namespace std;
@@ -96,6 +96,7 @@ std::ostream& operator<<(std::ostream& os, const BankAccount& account) {
     os << "Account Type:   " << account.getAccountType() << "\n";
     os << "Balance:        $" << std::fixed << std::setprecision(2) << account.getBalance() << "\n";
     os << "--------------------------------------\n";
+    os << account.transactions ;
     return os;
 }
 
