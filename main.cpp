@@ -1,165 +1,171 @@
 #include <iostream>
 #include <string>
-#include "Classes/BankAccount.h"
-#include "Classes/Transaction.h"
-#include "Classes/User.h"
+#include "BankAccount.hpp"
+#include "Transaction.hpp"
 #include <fstream>
-using namespace std;
+#include "vector"
+using namespace::std;
+
+// Function to perform XOR encryption/decryption
+std::string xorEncryptDecrypt(const std::string& input, const std::string& key) {
+    std::string output;
+    for (size_t i = 0; i < input.length(); ++i) {
+        output += input[i] ^ key[i % key.length()];
+    }
+    return output;
+}
+
+std::vector<std::string> splitString(const std::string& input, const std::string& delimiter) {
+    std::vector<std::string> tokens;
+    size_t start = 0, end = 0;
+    while ((end = input.find(delimiter, start)) != std::string::npos) {
+        tokens.push_back(input.substr(start, end - start));
+        start = end + delimiter.length();
+    }
+    tokens.push_back(input.substr(start));
+    return tokens;
+}
 
 int main() {
+    // Create a linked list of BankAccount objects with transactions
+       vector<BankAccount> accounts;
 
 
-//    // Test the BankAccount class
-   BankAccount account1("Savings", 1090.0);
-    User user1("JohnDoe", "password123", "123456789", "123 Main St", account1, User::UserRole(User::CUSTOMER));
+       // Create dummy BankAccount objects with transactions
+       BankAccount account1;
+       account1.accountNumber = "123";
+       account1.accountType = "Savings";
+       account1.balance = 1000;
+    account1.performTransaction("deposit", 100.0);
+    account1.performTransaction("deposit", 800.0);
 
-//    fstream();
-    ofstream fout; // Use ofstream for writing
-    //  unsigned short y = 13848;
-    fout.open("file.dat", ios::out | ios :: binary); // open file for writing as binary
-    if (fout)
-    {
-        fout.write(reinterpret_cast<char*>(&account1), sizeof(BankAccount));
-        fout.write(reinterpret_cast<char*>(&user1), sizeof(User));
-        //fout.write(reinterpret_cast<char*>(&x), sizeof(unsigned short));
-        // fout.write(reinterpret_cast<char*>(&y), sizeof(unsigned short));
-        fout.close();
+    
+
+       BankAccount account2;
+       account2.accountNumber = "456";
+       account2.accountType = "Checking";
+       account2.balance = 2000;
+    account2.performTransaction("deposit", 100.0);
+    account2.performTransaction("deposit", 800.0);
+
+
+    accounts.emplace_back(account2);
+    
+    
+    
+    BankAccount account3;
+    account3.accountNumber = "44444444";
+    account3.accountType = "Checking";
+    account3.balance = 200;
+    account3.performTransaction("deposit", 100.0);
+    account3.performTransaction("deposit", 800.0);
+
+
+ accounts.emplace_back(account3);
+    
+    BankAccount account4;
+    account4.accountNumber = "44444444";
+    account4.accountType = "Checking";
+    account4.balance = 200;
+    account4.performTransaction("deposit", 100.0);
+    account4.performTransaction("deposit", 800.0);
+
+
+ accounts.emplace_back(account4);
+    
+    
+ 
+ 
+    
+    
+    
+    accounts.emplace_back(account1);
+
+    
+    
+    
+
+
+    // Your encryption key (make sure it's a strong key in a real scenario)
+    std::string encryptionKey = "SecretKey";
+    
+    
+
+    // Serialize each object in the linked list and encrypt
+    std::vector<std::string> encryptedStrings;
+    
+    for (const auto& account : accounts) {
+        std::string serializedObject = account.serialize();
+        std::string encryptedString = xorEncryptDecrypt(serializedObject, encryptionKey);
+        encryptedStrings.push_back(encryptedString);
     }
-    else
-        cout << "Error opening file!\n";
 
-    std::ifstream fin;  // Use ifstream for reading
-    fin.open("file.dat", std::ios::in | std::ios::binary);  // Open file for reading as binary
 
-    if (fin) {
-        BankAccount account2("Checking", 2000.0);  // Create an empty BankAccount object
-        User user2("JaneDoe", "password321", "452656356", "123 Main St", account2, User::UserRole(User::CUSTOMER));
+  
+    
+    // Open a binary file for writing
+    std::ofstream outFile("encrypted_bank_accounts.bin", std::ios::binary);
 
-        // Read the binary data and deserialize into the BankAccount object
-        fin.read(reinterpret_cast<char*>(&account2), sizeof(BankAccount));
-        fin.read(reinterpret_cast<char*>(&user2), sizeof(User));
+    if (outFile.is_open()) {
+        // Write the encrypted strings to the file, separated by a newline character
+        for (const auto& encryptedString : encryptedStrings) {
+            outFile << encryptedString << "/012210/";
+        }
 
-        fin.close();
+        // Close the file
+        outFile.close();
 
-        // Now, 'account1' holds the deserialized data
-        // You can use 'account1' as needed
-        cout << user2;
-//        cout << account2;
-
-      //  std::cout << "Account Name: " << account1.getName() << std::endl;
-//        std::cout << "Balance: " << account2.getBalance() << std::endl;
+        std::cout << "Bank accounts encrypted and stored in 'encrypted_bank_accounts.bin'" << std::endl;
     } else {
-        std::cout << "Error opening file!\n";
+        std::cerr << "Unable to open the file for writing." << std::endl;
+        return 1;
     }
 
+    // Open the file for reading
+    std::ifstream inFile("encrypted_bank_accounts.bin", std::ios::binary);
+
+    if (inFile.is_open()) {
+        std::ifstream inFile("encrypted_bank_accounts.bin", std::ios::binary);
+
+        // Read the content of the file into a single string
+        std::stringstream buffer;
+        buffer << inFile.rdbuf();
+        std::string fileContent = buffer.str();
+
+        // Split the content into lines based on the terminator "/012210/"
+        std::vector<std::string> lines = splitString(fileContent, "/012210/");
+        for(std::string &s : lines){
+            std::cout << s << std::endl;
+        }
+
+        // Decrypt each string and deserialize
+        std::vector<BankAccount> decryptedAccounts;
+        for (const auto& encryptedString : lines) {
+            std::string decryptedString = xorEncryptDecrypt(encryptedString, encryptionKey);
+            BankAccount decryptedAccount = BankAccount::deserialize(decryptedString);
+            decryptedAccounts.push_back(decryptedAccount);
+        }
+        decryptedAccounts.pop_back();
+
+        // Print decrypted bank accounts
+        std::cout << "Decrypted Bank Accounts: " << std::endl;
+        for (const auto& account : decryptedAccounts) {
+            std::cout << "Account Number: " << account.accountNumber << std::endl;
+            std::cout << "Account Type: " << account.accountType << std::endl;
+            std::cout << "Balance: " << account.balance << std::endl;
+            std::cout << "Transactions:" << account.transactions << std::endl;
 
 
-//    // Create an array of BankAccount objects
-//    const int NUM_ACCOUNTS = 3;
-//    BankAccount accounts[NUM_ACCOUNTS ] = {
-//            BankAccount("Savings", 1090.0),
-//            BankAccount("Checking", 2000.0),
-//            BankAccount("Investment", 5000.0)
-//    };
-//
-//    // Write the array of BankAccount objects to a binary file
-//    std::ofstream fout("flvvvve.dat", std::ios::out | std::ios::binary);
-//
-//    if (fout.is_open()) {
-//        fout.write(reinterpret_cast<char*>(&accounts), sizeof(BankAccount) * NUM_ACCOUNTS  );
-//        fout.close();
-//    } else {
-//        std::cout << "Error opening file for writing!\n";
-//        return 1;
-//    }
-//
-//    // Read the array of BankAccount objects from the binary file
-//    std::ifstream fin("flvvvve.dat", std::ios::in | std::ios::binary);
-//
-//    if (fin.is_open()) {
-//        BankAccount readAccounts[NUM_ACCOUNTS  ];
-//
-//
-//        // Read the binary data and deserialize into the array of BankAccount object
-//        fin.read(reinterpret_cast<char*>(&readAccounts), sizeof(BankAccount) * NUM_ACCOUNTS  );
-//
-//        fin.close();
-//
-//        // Display the balances of the read accounts
-//        for (int i = 0; i < NUM_ACCOUNTS  ; ++i) {
-//            std::cout << "Balance for Account " << i + 1 << ": " << readAccounts[i].getBalance() << std::endl;
-//        }
-//    } else {
-//        std::cout << "Error opening file for reading!\n";
-//        return 1;
-//    }
 
-//    cout << "Initial Account State:\n" << account1;
-//
-//    BankAccount account2("Checking", 2000.0);
-//    cout << "Initial Account State:\n" << account2;
-//
-//    BankAccount accountM("Checking", 3000.0);
-//    // Test BankAccount class
-//    cout << "===== BankAccount Class Test =====\n";
-//
-//
-//    BankAccount account3("Savings", 1500.0);
-//    cout << "Initial Account State:\n" << account3;
-//
-//    BankAccount account4("Checking", 3000.0);
-//    cout << "Initial Account State:\n" << account4;
-//
-//    // Test getters and setters
-//    // account1.setAccountHolderName("Kareem Updated");
-//    account1.setAccountType("Checking");
-//    cout << "Updated Account State:\n" << account1;
-//
-//    // Test deposit and withdrawal
-//    account1.performTransaction(Transaction::DEPOSIT, 500.0);
-//    account1.performTransaction(Transaction::WITHDRAW, 200.0);
-//    cout << "After Deposit and Withdrawal:\n" << account1;
-//
-//    // Test balance inquiry
-//    account1.performTransaction(Transaction::BALANCE_INQUIRY, 0.0);
-//
-//    // Test transaction history
-//    account1.displayTransactionHistory();
-//
-//    cout << "----------------" << endl;
-//    cout << account1;
-//    cout << "----------------" << endl;
-//
-//    // Test the List class
-//    LinkedList<BankAccount> accountList;
-//    accountList.append(account1);
-//    accountList.append(account2);
-//    accountList.insert(1, accountM);
-//
-//    // Display the initial account list
-//    cout << "\nInitial Account List:\n" << accountList << endl;
-//
-//    // Test the remaining functions
-//    cout << "\nTesting Remaining LinkedList Functions:\n";
-//    cout << "Size of the list: " << accountList.getSize() << endl;
-//
-//    // Erase an element
-//    accountList.erase(0);
-//    cout << "\nAfter erasing the first element:\n" << accountList << endl;
-//
-//    // Insert at a specific index
-//    BankAccount accountX("Savings", 3000.0);
-//    accountList.insert(1, accountX);
-//    cout << "\nAfter inserting at index 1:\n" << accountList << endl;
-//
-//    // Append an element
-//    BankAccount accountY("Checking", 4000.0);
-//    accountList.append(accountY);
-//    cout << "\nAfter appending:\n" << accountList << endl;
-//
-//    // Clear the list
-//    accountList.clear();
-//    cout << "\nAfter clearing the list:\n" << accountList << endl;
+            std::cout << std::endl;
+        }
+
+        // Close the file
+        inFile.close();
+    } else {
+        std::cerr << "Unable to open the file for reading." << std::endl;
+        return 1;
+    }
 
     return 0;
 }
