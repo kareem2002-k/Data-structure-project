@@ -1,77 +1,144 @@
 #include <iostream>
 #include <string>
-#include "BankAccount.h"
-#include "Transaction.h"
-using namespace std;
+#include "BankAccount.hpp"
+#include "Transaction.hpp"
+#include <fstream>
+#include "vector"
+using namespace::std;
+
+// Function to perform XOR encryption/decryption
+std::string xorEncryptDecrypt(const std::string& input, const std::string& key) {
+    std::string output;
+    for (size_t i = 0; i < input.length(); ++i) {
+        output += input[i] ^ key[i % key.length()];
+    }
+    return output;
+}
+
+std::vector<std::string> splitString(const std::string& input, const std::string& delimiter) {
+    std::vector<std::string> tokens;
+    size_t start = 0, end = 0;
+    while ((end = input.find(delimiter, start)) != std::string::npos) {
+        tokens.push_back(input.substr(start, end - start));
+        start = end + delimiter.length();
+    }
+    tokens.push_back(input.substr(start));
+    return tokens;
+}
 
 int main() {
-    // Test BankAccount class
-    std::cout << "===== BankAccount Class Test =====\n";
+    // Create a linked list of BankAccount objects with transactions
+       vector<BankAccount> accounts;
 
-    // Test constructor and display
+
+       // Create dummy BankAccount objects with transactions
+       BankAccount account1;
+       account1.accountNumber = "123";
+       account1.accountType = "Savings";
+       account1.balance = 1000;
+    account1.performTransaction("deposit", 100.0);
+    account1.performTransaction("deposit", 800.0);
+
     
-    BankAccount account1("Kareem", "12345", "Savings", 1000.0);
-    std::cout << "Initial Account State:\n" << account1;
+//
+//       BankAccount account2;
+//       account2.accountNumber = "456";
+//       account2.accountType = "Checking";
+//       account2.balance = 2000;
 
-    BankAccount account2("Youssef", "54321", "Checking", 2000.0);
-    std::cout << "Initial Account State:\n" << account2;
+       // Insert BankAccount objects into the linked list
+//    accounts.emplace_back(account2);
+    
+    
+    
+           accounts.emplace_back(account1);
 
-    BankAccount account3("Omar", "98765", "Savings", 1500.0);
-    std::cout << "Initial Account State:\n" << account3;
+    
+    
+    
+    cout<<"iam here"<<endl<<accounts[0].transactions<<endl;
 
-    BankAccount account4("Ahmed", "56789", "Checking", 3000.0);
-    std::cout << "Initial Account State:\n" << account4;
 
-    // Test getters and setters
-    account1.setAccountHolderName("Kareem Updated");
-    account1.setAccountType("Checking");
-    std::cout << "Updated Account State:\n" << account1;
+    // Your encryption key (make sure it's a strong key in a real scenario)
+    std::string encryptionKey = "SecretKey";
+    
+    
 
-    // Test deposit and withdrawal
-    account1.performTransaction(Transaction::DEPOSIT, 500.0);
-    account1.performTransaction(Transaction::WITHDRAW, 200.0);
-    std::cout << "After Deposit and Withdrawal:\n" << account1;
+    // Serialize each object in the linked list and encrypt
+    std::vector<std::string> encryptedStrings;
+    
+    for (const auto& account : accounts) {
+        std::string serializedObject = account.serialize();
+        std::string encryptedString = xorEncryptDecrypt(serializedObject, encryptionKey);
+        encryptedStrings.push_back(encryptedString);
+    }
 
-    // Test balance inquiry
-    account1.performTransaction(Transaction::BALANCE_INQUIRY, 0.0);
 
-    // Test transaction history
-    account1.displayTransactionHistory();
+  
+    
+    // Open a binary file for writing
+    std::ofstream outFile("encrypted_bank_accounts.bin", std::ios::binary);
 
-    // Test Transaction class
-    std::cout << "===== Transaction Class Test =====\n";
+    if (outFile.is_open()) {
+        // Write the encrypted strings to the file, separated by a newline character
+        for (const auto& encryptedString : encryptedStrings) {
+            outFile << encryptedString << "/012210/";
+        }
 
-    // Test constructor and display
-    Transaction deposit(Transaction::DEPOSIT, 100.0);
-    Transaction withdrawal(Transaction::WITHDRAW, 50.0);
-    Transaction balanceInquiry(Transaction::BALANCE_INQUIRY, 0.0);
+        // Close the file
+        outFile.close();
 
-    std::cout << "Deposit Transaction:\n" << deposit;
-    std::cout << "Withdrawal Transaction:\n" << withdrawal;
-    std::cout << "Balance Inquiry Transaction:\n" << balanceInquiry;
+        std::cout << "Bank accounts encrypted and stored in 'encrypted_bank_accounts.bin'" << std::endl;
+    } else {
+        std::cerr << "Unable to open the file for writing." << std::endl;
+        return 1;
+    }
 
-    // Test LinkedList class
-    std::cout << "===== LinkedList Class Test =====\n";
+    // Open the file for reading
+    std::ifstream inFile("encrypted_bank_accounts.bin", std::ios::binary);
 
-    // Test LinkedList operations
-    LinkedList<int> intList;
-    intList.insert(0, 1);
-    intList.insert(1, 2);
-    intList.insert(1, 3);
-    std::cout << "Integer LinkedList:\n" << intList;
+    if (inFile.is_open()) {
+        std::ifstream inFile("encrypted_bank_accounts.bin", std::ios::binary);
 
-    intList.erase(1);
-    std::cout << "After Erasing at Index 1:\n" << intList;
+        // Read the content of the file into a single string
+        std::stringstream buffer;
+        buffer << inFile.rdbuf();
+        std::string fileContent = buffer.str();
 
-    // Intensive test for LinkedList
-    LinkedList<std::string> stringList;
-    stringList.insert(0, "apple");
-    stringList.insert(1, "banana");
-    stringList.insert(1, "orange");
-    std::cout << "String LinkedList:\n" << stringList;
+        // Split the content into lines based on the terminator "/012210/"
+        std::vector<std::string> lines = splitString(fileContent, "/012210/");
+        for(std::string &s : lines){
+            std::cout << s << std::endl;
+        }
 
-    stringList.erase(1);
-    std::cout << "After Erasing at Index 1:\n" << stringList;
+        // Decrypt each string and deserialize
+        std::vector<BankAccount> decryptedAccounts;
+        for (const auto& encryptedString : lines) {
+            std::string decryptedString = xorEncryptDecrypt(encryptedString, encryptionKey);
+            BankAccount decryptedAccount = BankAccount::deserialize(decryptedString);
+            decryptedAccounts.push_back(decryptedAccount);
+        }
+        decryptedAccounts.pop_back();
+
+        // Print decrypted bank accounts
+        std::cout << "Decrypted Bank Accounts: " << std::endl;
+        for (const auto& account : decryptedAccounts) {
+            std::cout << "Account Number: " << account.accountNumber << std::endl;
+            std::cout << "Account Type: " << account.accountType << std::endl;
+            std::cout << "Balance: " << account.balance << std::endl;
+            std::cout << "Transactions:" << account.transactions << std::endl;
+
+
+
+            std::cout << std::endl;
+        }
+
+        // Close the file
+        inFile.close();
+    } else {
+        std::cerr << "Unable to open the file for reading." << std::endl;
+        return 1;
+    }
 
     return 0;
 }
