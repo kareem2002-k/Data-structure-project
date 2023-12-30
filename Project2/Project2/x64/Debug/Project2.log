@@ -1,5 +1,6 @@
 ﻿  accountdetails.cpp
   BankAccount.cpp
+D:\semster5\data structure\projectnew\Data-structure-project\Project2\Project2\BankAccount.cpp(141,10): warning C4101: 'comma': unreferenced local variable
   checkbalance.cpp
   Customer.cpp
   depositform.cpp
@@ -10,8 +11,9 @@
   MyForm2h.cpp
   operations.cpp
   Transaction.cpp
-D:\semster5\data structure\projectnew\Data-structure-project\Project2\Project2\Transaction.cpp(8,15): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\semster5\data structure\projectnew\Data-structure-project\Project2\Project2\Transaction.cpp(11,15): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   User.cpp
+D:\semster5\data structure\projectnew\Data-structure-project\Project2\Project2\User.cpp(130,10): warning C4101: 'comma': unreferenced local variable
   withdrawform.cpp
   .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
   Generating Code...

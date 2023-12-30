@@ -170,17 +170,7 @@ namespace Project2 {
 
         }
         
-        //test for the display of the users
-
-        /*
-        void DisplayUserInformation() {
-          
-            // Set the text of labels to display user and bank account information
-            this->labelUsername->Text = "Username: " + gcnew String(user2.getUsername().c_str());
-            this->labelPassword->Text = "Password: " + gcnew String(user2.getPassword().c_str());
-           
-        }
-       */
+        
 
         void showlist() {
             String^ userListText = ""; // Initialize an empty string to hold user information

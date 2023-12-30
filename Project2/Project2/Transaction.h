@@ -8,24 +8,25 @@ using namespace std;
 
 class Transaction {
 public:
-    enum TransactionType {
-        DEPOSIT,
-        WITHDRAW,
-        BALANCE_INQUIRY
-    };
+
 
 private:
-    TransactionType type;
+    string type;
     double amount;
     string date;
 
 public:
-    Transaction(TransactionType transactionType, double transactionAmount);
+    Transaction(string transactionType, double transactionAmount);
 
     // Getters for transaction details
-    TransactionType getType() const;
+    string getType() const;
     double getAmount() const;
     const string& getDate() const;
+    static Transaction deserialize(const std::string& str);
+    std::string serialize() const;
+
+    Transaction() : amount(0) {}  // Set default values as needed
+
 };
 
 ostream& operator<<(ostream& os, const Transaction& transaction);

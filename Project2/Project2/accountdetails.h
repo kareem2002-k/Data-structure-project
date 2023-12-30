@@ -199,7 +199,7 @@ namespace Project2 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(600, 500);
+			this->ClientSize = System::Drawing::Size(614, 500);
 			this->Controls->Add(this->label10);
 			this->Controls->Add(this->label9);
 			this->Controls->Add(this->label8);
