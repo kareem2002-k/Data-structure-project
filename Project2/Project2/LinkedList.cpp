@@ -17,9 +17,9 @@ template <typename T>
 class LinkedList {
 private:
     int size;  // Added data member to track the size
-    Node<T>* head;
 
 public:
+    Node<T>* head;
     // Constructor
     LinkedList() : head(nullptr), size(0) {}
 
