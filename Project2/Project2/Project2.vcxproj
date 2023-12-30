@@ -121,6 +121,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="accountdetails.cpp" />
     <ClCompile Include="BankAccount.cpp" />
     <ClCompile Include="checkbalance.cpp" />
     <ClCompile Include="Customer.cpp" />
@@ -136,6 +137,9 @@
     <ClCompile Include="withdrawform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="accountdetails.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="BankAccount.h" />
     <ClInclude Include="checkbalance.h">
       <FileType>CppForm</FileType>
@@ -163,6 +167,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="accountdetails.resx">
+      <DependentUpon>accountdetails.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="checkbalance.resx">
       <DependentUpon>checkbalance.h</DependentUpon>
     </EmbeddedResource>

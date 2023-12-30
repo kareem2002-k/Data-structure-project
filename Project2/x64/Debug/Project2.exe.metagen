@@ -1,3 +1,4 @@
+  Project2.accountdetails.resources - Embedded, ContainedInManifestFile, 
   Project2.checkbalance.resources - Embedded, ContainedInManifestFile, 
   Project2.depositform.resources - Embedded, ContainedInManifestFile, 
   Project2.homeform.resources - Embedded, ContainedInManifestFile, 
@@ -20,6 +21,10 @@ Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=
 	hash=None, flags=None
 Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
+Class Project2.accountdetails: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class Project2.checkbalance: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

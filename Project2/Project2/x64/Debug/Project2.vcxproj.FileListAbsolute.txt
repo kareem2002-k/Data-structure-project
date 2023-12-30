@@ -7,6 +7,8 @@ F:\ds proj\Data-structure-project\Project2\Project2\x64\Debug\Project2.operation
 F:\ds proj\Data-structure-project\Project2\Project2\x64\Debug\Project2.vcxproj.GenerateResource.cache
 D:\semster5\data structure\projectnew\Data-structure-project\Project2\Project2\x64\Debug\Project2.vcxproj.AssemblyReference.cache
 D:\semster5\data structure\projectnew\Data-structure-project\Project2\Project2\x64\Debug\Project2.vcxproj.SuggestedBindingRedirects.cache
+D:\semster5\data structure\projectnew\Data-structure-project\Project2\Project2\x64\Debug\Project2.accountdetails.resources
+D:\semster5\data structure\projectnew\Data-structure-project\Project2\Project2\x64\Debug\Project2.checkbalance.resources
 D:\semster5\data structure\projectnew\Data-structure-project\Project2\Project2\x64\Debug\Project2.depositform.resources
 D:\semster5\data structure\projectnew\Data-structure-project\Project2\Project2\x64\Debug\Project2.homeform.resources
 D:\semster5\data structure\projectnew\Data-structure-project\Project2\Project2\x64\Debug\Project2.MyForm.resources
@@ -14,4 +16,3 @@ D:\semster5\data structure\projectnew\Data-structure-project\Project2\Project2\x
 D:\semster5\data structure\projectnew\Data-structure-project\Project2\Project2\x64\Debug\Project2.operations.resources
 D:\semster5\data structure\projectnew\Data-structure-project\Project2\Project2\x64\Debug\Project2.withdrawform.resources
 D:\semster5\data structure\projectnew\Data-structure-project\Project2\Project2\x64\Debug\Project2.vcxproj.GenerateResource.cache
-D:\semster5\data structure\projectnew\Data-structure-project\Project2\Project2\x64\Debug\Project2.checkbalance.resources

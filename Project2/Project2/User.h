@@ -38,7 +38,7 @@ public:
     void setBankAccount(const BankAccount& newBankAccount);
     void setRole(UserRole newRole);
 
-protected:
+public:
     string username;
     string password;
     string phonenum;

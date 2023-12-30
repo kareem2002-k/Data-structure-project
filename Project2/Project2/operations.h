@@ -3,8 +3,9 @@
 #define MYFORMop_H
 #include "depositform.h"
 #include "withdrawform.h"
-
 #include "checkbalance.h"
+
+#include "accountdetails.h"
 namespace Project2 {
 	extern   LinkedList<User> usertList;
 	using namespace System;
@@ -82,7 +83,7 @@ namespace Project2 {
 			// 
 			this->deposit->Location = System::Drawing::Point(39, 52);
 			this->deposit->Name = L"deposit";
-			this->deposit->Size = System::Drawing::Size(181, 65);
+			this->deposit->Size = System::Drawing::Size(162, 65);
 			this->deposit->TabIndex = 0;
 			this->deposit->Text = L"deposit";
 			this->deposit->UseVisualStyleBackColor = true;
@@ -102,7 +103,7 @@ namespace Project2 {
 			// 
 			this->button1->Location = System::Drawing::Point(39, 204);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(181, 65);
+			this->button1->Size = System::Drawing::Size(162, 65);
 			this->button1->TabIndex = 2;
 			this->button1->Text = L"check balance";
 			this->button1->UseVisualStyleBackColor = true;
@@ -121,10 +122,11 @@ namespace Project2 {
 			// 
 			this->button4->Location = System::Drawing::Point(39, 353);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(181, 65);
+			this->button4->Size = System::Drawing::Size(162, 65);
 			this->button4->TabIndex = 4;
 			this->button4->Text = L"account details";
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &operations::button4_Click_1);
 			// 
 			// operations
 			// 
@@ -178,6 +180,25 @@ private: System::Void deposit_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
 	checkbalance^ checkFormInstance = gcnew checkbalance(loggedInUserIndex);
+
+	this->Hide();
+
+	checkFormInstance->ShowDialog();
+
+	this->Show();
+}
+	   
+	   
+	   
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	
+
+}
+
+private: System::Void button4_Click_1(System::Object^ sender, System::EventArgs^ e) {
+
+	accountdetails^ checkFormInstance = gcnew accountdetails(loggedInUserIndex);
 
 	this->Hide();
 
