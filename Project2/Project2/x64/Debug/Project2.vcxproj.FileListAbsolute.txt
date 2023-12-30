@@ -1,0 +1,7 @@
+F:\ds proj\Data-structure-project\Project2\Project2\x64\Debug\Project2.vcxproj.AssemblyReference.cache
+F:\ds proj\Data-structure-project\Project2\Project2\x64\Debug\Project2.depositform.resources
+F:\ds proj\Data-structure-project\Project2\Project2\x64\Debug\Project2.homeform.resources
+F:\ds proj\Data-structure-project\Project2\Project2\x64\Debug\Project2.MyForm.resources
+F:\ds proj\Data-structure-project\Project2\Project2\x64\Debug\Project2.MyForm2h.resources
+F:\ds proj\Data-structure-project\Project2\Project2\x64\Debug\Project2.operations.resources
+F:\ds proj\Data-structure-project\Project2\Project2\x64\Debug\Project2.vcxproj.GenerateResource.cache

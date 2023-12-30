@@ -61,7 +61,6 @@ namespace Project2 {
 
 
 		
-		User& currentUser = usertList.getElementAt(loggedInUserIndex);
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -150,34 +149,43 @@ namespace Project2 {
 		   void showlist() {
 			   String^ userListText = ""; // Initialize an empty string to hold user information
 
+			   User currentUser = usertList.getElementAt(loggedInUserIndex);
+
+
+
 			   for (int i = 0; i < usertList.getSize(); i++) {
 				    currentUser = usertList.getElementAt(i);
 
 				   // Concatenate user information
 				   String^ userInfo = gcnew String((currentUser.getUsername() + " - " + currentUser.getPassword()).c_str());
 				   userListText += userInfo + Environment::NewLine; // Add a newline between each user
+				   
 			   }
 		   }
 		  
 		   void performdeposit(double amount) {
+
+
+			   User currentUser = usertList.getElementAt(loggedInUserIndex);
+
 		
 
 			   // Retrieve the current balance
-			   double currentBalance = usertList.getElementAt(loggedInUserIndex).bankAccount.getBalance();
+			   double currentBalance = currentUser.getBankAccount().getBalance();
 
 			   // Update the user's balance
 			   currentBalance += amount;
 
 			   // Set the new balance to the user's bank account
-			  // currentUser.getBankAccount().setBalance(currentBalance);
+			   currentUser.getBankAccount().setBalance(currentBalance);
 
-			   usertList.getElementAt(loggedInUserIndex).bankAccount.balance = currentBalance;
+			 //  usertList.getElementAt(loggedInUserIndex).bankAccount.setBalance(currentBalance);
 			   // Update the user in the usertList
-			//   usertList.replaceElementAt(loggedInUserIndex, currentUser);
+			   usertList.replaceElementAt(loggedInUserIndex, currentUser);
 
-			   usertList.getElementAt(loggedInUserIndex).bankAccount.setBalance(currentBalance);
+			//   usertList.getElementAt(loggedInUserIndex).bankAccount.setBalance(currentBalance);
 
-			   label1->Text = "Balance after deposit: $" + usertList.getElementAt(loggedInUserIndex).bankAccount.getBalance().ToString();
+			   label1->Text = "Balance after deposit: $" + currentUser.getBankAccount().getBalance();
 
 
 			   

@@ -45,20 +45,16 @@ public:
         }
         return *this;
     }
-    // New method to get an element at a specific index
-    T* getElementAt(int index) const {
+    T getElementAt(int index) const {
+
+
         Node<T>* current = head;
         for (int i = 0; i < index; i++) {
-            if (current == nullptr) {
-                // Handle index out of bounds (optional, depending on your requirements)
-                return nullptr;
-            }
             current = current->next;
         }
 
-        return &(current->data);
+        return current->data;
     }
-
 
     void replaceElementAt(int index, const T& value) {
         erase(index);
