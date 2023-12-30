@@ -1,23 +1,13 @@
 #include "MyForm2h.h"
 #include "homeform.h"
 #include "depositform.h"
-#include <iostream>
-#include <string>
-#include "BankAccount.h"
-#include "Transaction.h"
-#include <fstream>
-#include "vector"
-#include "User.h"
-
-
-
-using namespace::std;
 
 using namespace System;
 using namespace System::Windows::Forms;
 [STAThread]
 
 
+/*
 
 // Function to perform XOR encryption/decryption
 std::string xorEncryptDecrypt(const std::string& input, const std::string& key) {
@@ -38,21 +28,22 @@ std::vector<std::string> splitString(const std::string& input, const std::string
     tokens.push_back(input.substr(start));
     return tokens;
 }
-
-
-
+*/
 void main() {
 
+    /*
+
+
     // Create a linked list of BankAccount objects with transactions
-    vector<BankAccount> accounts;
-    vector<User> users;
+  //  vector<BankAccount> accounts;
+   // vector<User> userss;
 
 
 
     // Create three dummy accounts
-    User dummy1(User::CUSTOMER, "John", "Doe", "john@example.com", "password123", "123456789", 1000.0,"kareem");
-    User dummy2(User::CUSTOMER, "Jane", "Smith", "jane@example.com", "securepass", "987654321", 1500.0,"ahmed");
-    User dummy3(User::ADMIN, "Admin", "User", "admin@example.com", "adminpass", "555555555", 5000.0,"samir");
+    User dummy1(User::CUSTOMER, "John", "Doe", "john@example.com", "password123", "123456789", 1000.0, "kareem");
+    User dummy2(User::CUSTOMER, "Jane", "Smith", "jane@example.com", "securepass", "987654321", 1500.0, "ahmed");
+    User dummy3(User::ADMIN, "Admin", "User", "admin@example.com", "adminpass", "555555555", 5000.0, "samir");
 
 
 
@@ -67,25 +58,26 @@ void main() {
     dummy3.getBankAccount().performTransaction("deposit", 200);
     dummy3.getBankAccount().performTransaction("deposit", 300);
 
-    users.emplace_back(dummy1);
-    users.emplace_back(dummy2);
-    users.emplace_back(dummy3);
+    usertList.append(dummy1);
+    usertList.append(dummy2);
+    usertList.append(dummy3);
 
-   
-    
-    
+
+
+
     // Your encryption key (make sure it's a strong key in a real scenario)
     std::string encryptionKey = "SecretKey";
 
 
 
     // Serialize each object in the linked list and encrypt
-    std::vector<std::string> encryptedStrings;
+    LinkedList<std::string> encryptedStrings;
 
-    for (const auto& account : users) {
-        std::string serializedObject = account.serialize();
+    for (int i = 0; i < usertList.getSize(); i++) {
+
+        std::string serializedObject = usertList.getElementAt(i).serialize();
         std::string encryptedString = xorEncryptDecrypt(serializedObject, encryptionKey);
-        encryptedStrings.push_back(encryptedString);
+        encryptedStrings.append(encryptedString);
     }
 
 
@@ -96,8 +88,8 @@ void main() {
 
     if (outFile.is_open()) {
         // Write the encrypted strings to the file, separated by a newline character
-        for (const auto& encryptedString : encryptedStrings) {
-            outFile << encryptedString << "/012210/";
+        for (int i = 0; i < encryptedStrings.getSize(); i++) {
+            outFile << encryptedStrings.getElementAt(i) << "/012210/";
         }
 
         // Close the file
@@ -127,18 +119,18 @@ void main() {
         }
 
         // Decrypt each string and deserialize
-        std::vector<User> decryptedAccounts;
+        LinkedList<User> decryptedAccounts;
         for (const auto& encryptedString : lines) {
             std::string decryptedString = xorEncryptDecrypt(encryptedString, encryptionKey);
             User decryptedAccount = User::deserialize(decryptedString);
-            decryptedAccounts.push_back(decryptedAccount);
+            decryptedAccounts.append(decryptedAccount);
         }
-        decryptedAccounts.pop_back();
+        decryptedAccounts.erase(decryptedAccounts.getSize() - 1);
 
         // Print decrypted bank accounts
         std::cout << "Decrypted Bank Accounts: " << std::endl;
-        for (const auto& account : decryptedAccounts) {
-            cout << account << endl;
+        for (int i = 0; i < decryptedAccounts.getSize(); i++) {
+            cout << decryptedAccounts.getElementAt(i) << endl;
         }
 
         // Close the file
@@ -147,15 +139,15 @@ void main() {
     else {
         std::cerr << "Unable to open the file for reading." << std::endl;
     }
+    */
 
 
-	
-	Application::EnableVisualStyles();
-	Application::SetCompatibleTextRenderingDefault(false);
-	Project2::homeform form;
+    Application::EnableVisualStyles();
+    Application::SetCompatibleTextRenderingDefault(false);
+    Project2::homeform form;
 
 
-	Application::Run(% form);
+    Application::Run(% form);
 
 
 }
