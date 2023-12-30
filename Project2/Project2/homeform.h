@@ -133,69 +133,15 @@ namespace Project2 {
 
 
 
-        // Create three dummy accounts
-        User dummy1(User::CUSTOMER, "John", "Doe", "john@example.com", "password123", "123456789", 1000.0, "kareem");
-        User dummy2(User::CUSTOMER, "Jane", "Smith", "jane@example.com", "securepass", "987654321", 1500.0, "ahmed");
-        User dummy3(User::ADMIN, "Admin", "User", "admin@example.com", "adminpass", "555555555", 5000.0, "samir");
-
-
-
-        dummy1.getBankAccount().performTransaction("deposit", 100);
-        dummy1.getBankAccount().performTransaction("deposit", 300);
-
-        dummy2.getBankAccount().performTransaction("deposit", 400);
-        dummy2.getBankAccount().performTransaction("deposit", 500);
-
-
-
-        dummy3.getBankAccount().performTransaction("deposit", 200);
-        dummy3.getBankAccount().performTransaction("deposit", 300);
-
-        usertList.append(dummy1);
-        usertList.append(dummy2);
-        usertList.append(dummy3);
-
-
-
 
         // Your encryption key (make sure it's a strong key in a real scenario)
         std::string encryptionKey = "SecretKey";
 
 
 
-        // Serialize each object in the linked list and encrypt
-        LinkedList<std::string> encryptedStrings;
-
-        for (int i = 0; i < usertList.getSize(); i++) {
-
-            std::string serializedObject = usertList.getElementAt(i).serialize();
-            std::string encryptedString = xorEncryptDecrypt(serializedObject, encryptionKey);
-            encryptedStrings.append(encryptedString);
-        }
-
-
-
-
-        // Open a binary file for writing
-        std::ofstream outFile("encrypted_bank_accounts.bin", std::ios::binary);
-
-        if (outFile.is_open()) {
-            // Write the encrypted strings to the file, separated by a newline character
-            for (int i = 0; i < encryptedStrings.getSize(); i++) {
-                outFile << encryptedStrings.getElementAt(i) << "/012210/";
-            }
-
-            // Close the file
-            outFile.close();
-
-            std::cout << "Bank accounts encrypted and stored in 'encrypted_bank_accounts.bin'" << std::endl;
-        }
-        else {
-            std::cerr << "Unable to open the file for writing." << std::endl;
-        }
-
         // Open the file for reading
         std::ifstream inFile("encrypted_bank_accounts.bin", std::ios::binary);
+
 
         if (inFile.is_open()) {
             std::ifstream inFile("encrypted_bank_accounts.bin", std::ios::binary);
@@ -233,6 +179,50 @@ namespace Project2 {
         }
         else {
             std::cerr << "Unable to open the file for reading." << std::endl;
+        }
+
+
+        this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &homeform::homeform_FormClosing);
+
+    }
+
+
+    private: System::Void homeform_FormClosing(System::Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e) {
+
+
+
+
+        // Your encryption key (make sure it's a strong key in a real scenario)
+        std::string encryptionKey = "SecretKey";
+
+        // Serialize each object in the linked list and encrypt
+        LinkedList<std::string> encryptedStrings;
+
+        for (int i = 0; i < usertList.getSize(); i++) {
+
+            std::string serializedObject = usertList.getElementAt(i).serialize();
+            std::string encryptedString = xorEncryptDecrypt(serializedObject, encryptionKey);
+            encryptedStrings.append(encryptedString);
+        }
+
+
+
+        // Open a binary file for writing
+        std::ofstream outFile("encrypted_bank_accounts.bin", std::ios::binary);
+
+        if (outFile.is_open()) {
+            // Write the encrypted strings to the file, separated by a newline character
+            for (int i = 0; i < encryptedStrings.getSize(); i++) {
+                outFile << encryptedStrings.getElementAt(i) << "/012210/";
+            }
+
+            // Close the file
+            outFile.close();
+
+            std::cout << "Bank accounts encrypted and stored in 'encrypted_bank_accounts.bin'" << std::endl;
+        }
+        else {
+            std::cerr << "Unable to open the file for writing." << std::endl;
         }
 
 
