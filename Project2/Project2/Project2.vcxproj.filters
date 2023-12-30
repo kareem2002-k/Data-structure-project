@@ -48,6 +48,12 @@
     <ClCompile Include="ManagedUser .cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="withdrawform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="checkbalance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
@@ -75,6 +81,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="depositform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="withdrawform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="checkbalance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

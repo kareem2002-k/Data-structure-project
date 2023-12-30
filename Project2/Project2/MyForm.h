@@ -8,6 +8,8 @@
 #include "depositform.h"
 #include "ManagedUser .cpp"
 
+#include "operations.h"
+
 namespace Project2 {
 
       LinkedList<User> usertList;
@@ -230,8 +232,12 @@ namespace Project2 {
 
        // Check if the user is found
       if (loggedInUserindex != -1) {
-          depositform^ depositFormInstance = gcnew depositform(loggedInUserindex);
-          depositFormInstance->Show();
+          operations^ operationsFormInstance = gcnew operations(loggedInUserindex);
+
+          this->Hide();
+          operationsFormInstance->ShowDialog();
+          this->Show();
+          
       }
    }
 

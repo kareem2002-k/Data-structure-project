@@ -1,2 +1,5 @@
-﻿  BankAccount.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
-  Project2.vcxproj -> F:\ds proj\Data-structure-project\Project2\x64\Debug\Project2.exe
+﻿  ManagedUser .cpp
+  operations.cpp
+  Generating Code...
+  BankAccount.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  Project2.vcxproj -> D:\semster5\data structure\projectnew\Data-structure-project\Project2\x64\Debug\Project2.exe

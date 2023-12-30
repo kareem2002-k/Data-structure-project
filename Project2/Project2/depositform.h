@@ -52,6 +52,8 @@ namespace Project2 {
 	private: System::Windows::Forms::Label^ label1;
 	private: int loggedInUserIndex;
 	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ label3;
+
 
 	private:
 		/// <summary>
@@ -69,52 +71,73 @@ namespace Project2 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(depositform::typeid));
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(185, 203);
+			this->textBox1->Location = System::Drawing::Point(176, 130);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(117, 22);
+			this->textBox1->Size = System::Drawing::Size(132, 22);
 			this->textBox1->TabIndex = 0;
+			this->textBox1->TextChanged += gcnew System::EventHandler(this, &depositform::textBox1_TextChanged);
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(185, 344);
+			this->button1->Location = System::Drawing::Point(176, 386);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(125, 46);
 			this->button1->TabIndex = 1;
-			this->button1->Text = L"button1";
+			this->button1->Text = L"deposit";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &depositform::button1_Click);
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(99, 262);
+			this->label1->BackColor = System::Drawing::Color::Transparent;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 12));
+			this->label1->Location = System::Drawing::Point(22, 265);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(44, 16);
+			this->label1->Size = System::Drawing::Size(104, 24);
 			this->label1->TabIndex = 2;
-			this->label1->Text = L"label1";
+			this->label1->Text = L"balance after";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(397, 262);
+			this->label2->BackColor = System::Drawing::Color::Transparent;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 12));
+			this->label2->Location = System::Drawing::Point(22, 127);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(44, 16);
+			this->label2->Size = System::Drawing::Size(136, 24);
 			this->label2->TabIndex = 3;
-			this->label2->Text = L"label2";
+			this->label2->Text = L"enter the amount";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->BackColor = System::Drawing::Color::Transparent;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 12));
+			this->label3->Location = System::Drawing::Point(22, 212);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(117, 24);
+			this->label3->TabIndex = 4;
+			this->label3->Text = L"balance before";
 			// 
 			// depositform
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(561, 481);
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->ClientSize = System::Drawing::Size(608, 481);
+			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
@@ -137,8 +160,12 @@ namespace Project2 {
 		double inputValue;
 
 		Double::TryParse(textBox1->Text, inputValue);
+
 		
+
 		performdeposit( inputValue);
+	
+		
 
 		showlist();
 
@@ -167,12 +194,13 @@ namespace Project2 {
 
 
 			   User currentUser = usertList.getElementAt(loggedInUserIndex);
-
+			   label3->Text = "Balance before deposit: $" + currentUser.getBankAccount().getBalance();
 		
 
 			   // Retrieve the current balance
 			   double currentBalance = currentUser.getBankAccount().getBalance();
 
+			  
 			   // Update the user's balance
 			   currentBalance += amount;
 
@@ -185,13 +213,21 @@ namespace Project2 {
 
 			//   usertList.getElementAt(loggedInUserIndex).bankAccount.setBalance(currentBalance);
 
-			   label1->Text = "Balance after deposit: $" + currentUser.getBankAccount().getBalance();
+			   if ( String::IsNullOrEmpty(textBox1->Text)) {
+				   
+				   MessageBox::Show("please enter the amount ,the field is empty");
+			   }
 
+			   else {
+				   label1->Text = "Balance after deposit: $" + currentUser.getBankAccount().getBalance();
 
-			   
+			   }
+
 		   }
 			
 			
-	};
+	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }
 #endif

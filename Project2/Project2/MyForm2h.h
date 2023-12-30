@@ -59,6 +59,7 @@ namespace Project2 {
 	private: System::Windows::Forms::TextBox^ textBox4;
 	private: System::Windows::Forms::TextBox^ textBox5;
 	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::TextBox^ textBox6;
 
 	private:
 		/// <summary>
@@ -86,6 +87,7 @@ namespace Project2 {
 			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
 			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// button1
@@ -192,6 +194,7 @@ namespace Project2 {
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(100, 22);
 			this->textBox3->TabIndex = 8;
+			this->textBox3->TextChanged += gcnew System::EventHandler(this, &MyForm2h::textBox3_TextChanged);
 			// 
 			// textBox4
 			// 
@@ -233,6 +236,15 @@ namespace Project2 {
 			this->button2->UseVisualStyleBackColor = false;
 			this->button2->Click += gcnew System::EventHandler(this, &MyForm2h::button2_Click);
 			// 
+			// textBox6
+			// 
+			this->textBox6->BackColor = System::Drawing::SystemColors::HighlightText;
+			this->textBox6->ForeColor = System::Drawing::SystemColors::InactiveCaptionText;
+			this->textBox6->Location = System::Drawing::Point(130, 428);
+			this->textBox6->Name = L"textBox6";
+			this->textBox6->Size = System::Drawing::Size(100, 22);
+			this->textBox6->TabIndex = 12;
+			// 
 			// MyForm2h
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -240,6 +252,7 @@ namespace Project2 {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(731, 533);
+			this->Controls->Add(this->textBox6);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->textBox5);
 			this->Controls->Add(this->textBox4);
@@ -265,19 +278,23 @@ namespace Project2 {
 		String^ enteredUsername = textBox1->Text;
 		String^ enteredpassword = textBox2->Text;
 		String^ enteredaccount = textBox3->Text;
+		String^ enteredBalance = textBox6->Text;
+		double parsedBalance;
+		System::Double::TryParse(enteredBalance, parsedBalance);
 
-		signin(enteredUsername,enteredpassword, enteredaccount);
+		signin(enteredUsername,enteredpassword, enteredaccount, parsedBalance);
 		
 	}
 
-		void signin(String^ enteredUsername,String^ enteredpassword, String ^ enteredaccount) {
+		void signin(String^ enteredUsername,String^ enteredpassword, String ^ enteredaccount, double enteredbalance) {
 	
 
 			// Generate some default values for user attributes
 			
 			std::string phoneNumber = "452656356";
 			std::string address = "123 Main St";
-
+			
+			
 			// Assume you have a unique ID for each user, for example, based on the current timestamp
 			// You can use a proper unique ID mechanism in your application
 			std::string userId = "ID_" + std::to_string(static_cast<long long>(time(0)));
@@ -286,9 +303,9 @@ namespace Project2 {
 			std::string username = msclr::interop::marshal_as<std::string>(enteredUsername);
 			std::string userpassword = msclr::interop::marshal_as<std::string>(enteredpassword);
 			std::string account = msclr::interop::marshal_as<std::string>(enteredaccount);
+	
 
-
-			BankAccount account2(account, 2000.0);
+			BankAccount account2(account, enteredbalance);
 			// if the user already signed 
 			for (int i = 0; i < usertList.getSize(); i++) {
 				if (username == usertList.getElementAt(i).getUsername() && userpassword == usertList.getElementAt(i).getPassword()) {
@@ -332,6 +349,8 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 
 	     this->Close();
    }
+private: System::Void textBox3_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }
 #endif // MYFORM2H_H

@@ -1,7 +1,12 @@
 #pragma once
+#ifndef MYFORMop_H
+#define MYFORMop_H
+#include "depositform.h"
+#include "withdrawform.h"
 
+#include "checkbalance.h"
 namespace Project2 {
-
+	extern   LinkedList<User> usertList;
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -23,6 +28,15 @@ namespace Project2 {
 			//
 		}
 
+		operations(int userIndex) {
+			// Initialize the form
+			InitializeComponent();
+			// Use 'user' as needed
+			loggedInUserIndex = userIndex;
+
+
+		}
+
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -35,8 +49,13 @@ namespace Project2 {
 			}
 		}
 	private: System::Windows::Forms::Button^ deposit;
-	protected:
-	private: System::Windows::Forms::Button^ button2;
+	private: int loggedInUserIndex;
+	private: System::Windows::Forms::Button^ withdraw;
+	
+
+	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::Button^ button4;
 
 	private:
 		/// <summary>
@@ -51,34 +70,73 @@ namespace Project2 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(operations::typeid));
 			this->deposit = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->withdraw = (gcnew System::Windows::Forms::Button());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// deposit
 			// 
-			this->deposit->Location = System::Drawing::Point(137, 333);
+			this->deposit->Location = System::Drawing::Point(39, 52);
 			this->deposit->Name = L"deposit";
-			this->deposit->Size = System::Drawing::Size(191, 80);
+			this->deposit->Size = System::Drawing::Size(181, 65);
 			this->deposit->TabIndex = 0;
-			this->deposit->Text = L"button1";
+			this->deposit->Text = L"deposit";
 			this->deposit->UseVisualStyleBackColor = true;
+			this->deposit->Click += gcnew System::EventHandler(this, &operations::deposit_Click);
 			// 
-			// button2
+			// withdraw
 			// 
-			this->button2->Location = System::Drawing::Point(423, 333);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(191, 80);
-			this->button2->TabIndex = 1;
-			this->button2->Text = L"button2";
-			this->button2->UseVisualStyleBackColor = true;
+			this->withdraw->Location = System::Drawing::Point(280, 52);
+			this->withdraw->Name = L"withdraw";
+			this->withdraw->Size = System::Drawing::Size(155, 65);
+			this->withdraw->TabIndex = 1;
+			this->withdraw->Text = L"withdraw";
+			this->withdraw->UseVisualStyleBackColor = true;
+			this->withdraw->Click += gcnew System::EventHandler(this, &operations::withdraw_Click);
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(39, 204);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(181, 65);
+			this->button1->TabIndex = 2;
+			this->button1->Text = L"check balance";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &operations::button1_Click);
+			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(280, 204);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(155, 65);
+			this->button3->TabIndex = 3;
+			this->button3->Text = L"transfer";
+			this->button3->UseVisualStyleBackColor = true;
+			// 
+			// button4
+			// 
+			this->button4->Location = System::Drawing::Point(39, 353);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(181, 65);
+			this->button4->TabIndex = 4;
+			this->button4->Text = L"account details";
+			this->button4->UseVisualStyleBackColor = true;
 			// 
 			// operations
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(869, 590);
-			this->Controls->Add(this->button2);
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->ClientSize = System::Drawing::Size(940, 590);
+			this->Controls->Add(this->button4);
+			this->Controls->Add(this->button3);
+			this->Controls->Add(this->button1);
+			this->Controls->Add(this->withdraw);
 			this->Controls->Add(this->deposit);
 			this->Name = L"operations";
 			this->Text = L"operations";
@@ -95,5 +153,39 @@ namespace Project2 {
 
 
 	}
-	};
+	private: System::Void withdraw_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		withdrawform^ withdrawFormInstance = gcnew withdrawform(loggedInUserIndex);
+
+		this->Hide();
+
+		withdrawFormInstance->ShowDialog();
+
+		this->Show();
+
+	}
+private: System::Void deposit_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	
+	depositform^ depositFormInstance = gcnew depositform(loggedInUserIndex);
+
+	this->Hide();
+
+	depositFormInstance->ShowDialog();
+
+	this->Show();
 }
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	checkbalance^ checkFormInstance = gcnew checkbalance(loggedInUserIndex);
+
+	this->Hide();
+
+	checkFormInstance->ShowDialog();
+
+	this->Show();
+}
+};
+}
+
+#endif // MYFORMop_H
