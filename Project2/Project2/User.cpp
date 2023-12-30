@@ -19,7 +19,7 @@ int User::nextuID = 1;
 
 
 User::User(UserRole usrole, const string& fname, const string& lname, const string& email,
-    const string& password, const string& phoneNum, double initBalance): Fname(fname), Lname(lname), Email(email), Password(password), role(usrole), phonenum(phoneNum) {
+    const string& password, const string& phoneNum, double initBalance, string Username): Fname(fname), Lname(lname), Email(email), Password(password), role(usrole), phonenum(phoneNum) , username(Username) {
     role = usrole;
     uID = generateUserID();
     bankAccount.setBalance(initBalance);
@@ -116,7 +116,7 @@ std::string User::serialize() const {
     std::ostringstream oss;
 
     // Serialize user information
-    oss << role << "," << Fname << "," << Lname << "," << Email << "," << Password << "," << phonenum << ",";
+    oss << role << "," << Fname << "," << Lname << "," << Email << "," << Password << "," << phonenum << "," << username << ",";
 
     // Serialize BankAccount
     oss << serializeBankAccount();

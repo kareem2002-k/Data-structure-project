@@ -10,8 +10,7 @@
 
 namespace Project2 {
 
-      LinkedList<User> usertList;
-
+    LinkedList<User> usertList;
     using namespace System;
     using namespace System::Windows::Forms;
 
@@ -195,7 +194,7 @@ namespace Project2 {
             label2->Text = userListText;
         }
 
-        // verification of users username and password 
+          // verification of users username and password 
         int MyForm::validatelogin() {
             for (int i = 0; i < usertList.getSize(); i++) {
                 User currentUser = usertList.getElementAt(i);

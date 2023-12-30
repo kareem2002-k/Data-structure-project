@@ -21,7 +21,7 @@ public:
         const BankAccount& bankAccount, const UserRole& role);
 
     User(UserRole role, const string& fname, const string& lname, const string& email,
-        const string& password, const string& phoneNum, double initBalance);
+        const string& password, const string& phoneNum, double initBalance, string Username);
 
     User() : Fname(""), Lname(""), Email(""), Password(""), phonenum("") {
         //       type = userType;

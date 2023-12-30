@@ -11,6 +11,8 @@ namespace Project2 {
     using namespace System::Windows::Forms;
     using namespace System::Data;
     using namespace System::Drawing;
+    LinkedList<User> users;
+
 
     /// <summary>
     /// Summary for homeform
