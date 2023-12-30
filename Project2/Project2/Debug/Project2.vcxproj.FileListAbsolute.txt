@@ -1,0 +1,6 @@
+D:\myrepo\Project2\Project2\Debug\Project2.vcxproj.AssemblyReference.cache
+D:\myrepo\Project2\Project2\Debug\Project2.vcxproj.SuggestedBindingRedirects.cache
+D:\myrepo\Project2\Project2\Debug\Project2.homeform.resources
+D:\myrepo\Project2\Project2\Debug\Project2.MyForm.resources
+D:\myrepo\Project2\Project2\Debug\Project2.MyForm2h.resources
+D:\myrepo\Project2\Project2\Debug\Project2.vcxproj.GenerateResource.cache

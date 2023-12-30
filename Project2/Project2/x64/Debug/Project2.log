@@ -1,0 +1,54 @@
+﻿  BankAccount.cpp
+  Customer.cpp
+  depositform.cpp
+D:\myrepo\Project2\Project2\depositform.h(64,33): error C2039: 'getElementAt': is not a member of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(9): message : see declaration of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(64,21): error C2832: 'Project2::depositform::currentUser': a reference type cannot be value-initialized
+D:\myrepo\Project2\Project2\depositform.h(64): message : see declaration of 'Project2::depositform::currentUser'
+D:\myrepo\Project2\Project2\depositform.h(154,33): error C2039: 'getElementAt': is not a member of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(9): message : see declaration of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(166,41): error C2039: 'getElementAt': is not a member of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(9): message : see declaration of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(174,17): error C2039: 'getElementAt': is not a member of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(9): message : see declaration of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(178,17): error C2039: 'getElementAt': is not a member of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(9): message : see declaration of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(180,61): error C2039: 'getElementAt': is not a member of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(9): message : see declaration of 'LinkedList<User>'
+  homeform.cpp
+  LinkedList.cpp
+  ManagedUser .cpp
+  MyForm.cpp
+D:\myrepo\Project2\Project2\depositform.h(64,33): error C2039: 'getElementAt': is not a member of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(9): message : see declaration of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(64,21): error C2832: 'Project2::depositform::currentUser': a reference type cannot be value-initialized
+D:\myrepo\Project2\Project2\depositform.h(64): message : see declaration of 'Project2::depositform::currentUser'
+D:\myrepo\Project2\Project2\depositform.h(154,33): error C2039: 'getElementAt': is not a member of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(9): message : see declaration of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(166,41): error C2039: 'getElementAt': is not a member of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(9): message : see declaration of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(174,17): error C2039: 'getElementAt': is not a member of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(9): message : see declaration of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(178,17): error C2039: 'getElementAt': is not a member of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(9): message : see declaration of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(180,61): error C2039: 'getElementAt': is not a member of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(9): message : see declaration of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\MyForm.h(187,46): error C2039: 'getElementAt': is not a member of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(9): message : see declaration of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\MyForm.h(187,34): error C2512: 'User': no appropriate default constructor available
+D:\myrepo\Project2\Project2\User.h(9,7): message : see declaration of 'User'
+D:\myrepo\Project2\Project2\MyForm.h(201,46): error C2039: 'getElementAt': is not a member of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(9): message : see declaration of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\MyForm.h(201,34): error C2512: 'User': no appropriate default constructor available
+D:\myrepo\Project2\Project2\User.h(9,7): message : see declaration of 'User'
+D:\myrepo\Project2\Project2\MyForm2h.h(294,31): error C2039: 'getElementAt': is not a member of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(9): message : see declaration of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\MyForm2h.h(294,90): error C2039: 'getElementAt': is not a member of 'LinkedList<User>'
+D:\myrepo\Project2\Project2\depositform.h(9): message : see declaration of 'LinkedList<User>'
+  MyForm2h.cpp
+  operations.cpp
+  Transaction.cpp
+D:\myrepo\Project2\Project2\Transaction.cpp(8,15): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  User.cpp
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+  Generating Code...
