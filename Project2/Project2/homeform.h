@@ -226,6 +226,8 @@ namespace Project2 {
             cout << decryptedAccounts.getElementAt(i) << endl;
         }
 
+
+        usertList = decryptedAccounts;
         // Close the file
         inFile.close();
     }

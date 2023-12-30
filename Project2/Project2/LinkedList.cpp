@@ -32,7 +32,7 @@ public:
     LinkedList(const LinkedList& other)
         : head(nullptr), size(other.size) {
         if (other.head == nullptr) return;
-        copyList(other.head, head);
+        copyList(other.head);
         size = other.size;
     }
 
@@ -40,11 +40,12 @@ public:
     LinkedList& operator=(const LinkedList& other) {
         if (this != &other) {
             clear();
-            copyList(other.head, head);
+            head = copyList(other.head);
             size = other.size;
         }
         return *this;
     }
+
     T getElementAt(int index) const {
 
 
@@ -161,13 +162,13 @@ public:
 
 private:
     // Helper function for deep copy
-    void copyList(const Node<T>* source, Node<T>* orighead) {
+    Node<T>* copyList(const Node<T>* source) {
         if (source == nullptr) {
-            return;
+            return nullptr;
         }
 
-        orighead = new Node<T>(source->data);
-        Node<T>* currentNewNode = orighead;
+        Node<T>* newHead = new Node<T>(source->data);
+        Node<T>* currentNewNode = newHead;
         const Node<T>* currentSourceNode = source->next;
 
         while (currentSourceNode != nullptr) {
@@ -175,6 +176,8 @@ private:
             currentNewNode = currentNewNode->next;
             currentSourceNode = currentSourceNode->next;
         }
+
+        return newHead;
     }
 };
 

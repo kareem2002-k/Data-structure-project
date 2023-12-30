@@ -143,7 +143,10 @@ User User::deserialize(const std::string& str) {
         std::getline(iss, user.Lname, ',') &&
         std::getline(iss, user.Email, ',') &&
         std::getline(iss, user.Password, ',') &&
-        std::getline(iss, user.phonenum, ',')) {
+        std::getline(iss, user.phonenum, ',')&&
+        std::getline(iss, user.username, ',')
+
+        ) {
 
         user.uID = user.generateUserID();
 
