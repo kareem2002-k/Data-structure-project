@@ -46,6 +46,7 @@ namespace Project2 {
     private: System::Windows::Forms::Label^ label1;
     private: System::Windows::Forms::Label^ label2;
     private: System::Windows::Forms::Button^ button1;
+    private: System::Windows::Forms::PictureBox^ pictureBox1;
 
 
 
@@ -62,6 +63,8 @@ namespace Project2 {
             this->label1 = (gcnew System::Windows::Forms::Label());
             this->label2 = (gcnew System::Windows::Forms::Label());
             this->button1 = (gcnew System::Windows::Forms::Button());
+            this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
             this->SuspendLayout();
             // 
             // labelUsername
@@ -70,7 +73,7 @@ namespace Project2 {
             this->labelUsername->Location = System::Drawing::Point(418, -35);
             this->labelUsername->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
             this->labelUsername->Name = L"labelUsername";
-            this->labelUsername->Size = System::Drawing::Size(58, 13);
+            this->labelUsername->Size = System::Drawing::Size(73, 16);
             this->labelUsername->TabIndex = 0;
             this->labelUsername->Text = L"Username:";
             // 
@@ -78,11 +81,12 @@ namespace Project2 {
             // 
             this->labelPassword->AutoSize = true;
             this->labelPassword->BackColor = System::Drawing::Color::Transparent;
+            this->labelPassword->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9));
             this->labelPassword->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
             this->labelPassword->Location = System::Drawing::Point(24, 208);
             this->labelPassword->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
             this->labelPassword->Name = L"labelPassword";
-            this->labelPassword->Size = System::Drawing::Size(52, 13);
+            this->labelPassword->Size = System::Drawing::Size(73, 18);
             this->labelPassword->TabIndex = 1;
             this->labelPassword->Text = L"password";
             // 
@@ -90,14 +94,14 @@ namespace Project2 {
             // 
             this->userinput->Location = System::Drawing::Point(141, 128);
             this->userinput->Name = L"userinput";
-            this->userinput->Size = System::Drawing::Size(100, 20);
+            this->userinput->Size = System::Drawing::Size(100, 22);
             this->userinput->TabIndex = 2;
             // 
             // passinput
             // 
             this->passinput->Location = System::Drawing::Point(141, 208);
             this->passinput->Name = L"passinput";
-            this->passinput->Size = System::Drawing::Size(100, 20);
+            this->passinput->Size = System::Drawing::Size(100, 22);
             this->passinput->TabIndex = 3;
             // 
             // login_button
@@ -116,20 +120,21 @@ namespace Project2 {
             // 
             this->label1->AutoSize = true;
             this->label1->BackColor = System::Drawing::Color::Transparent;
+            this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9));
             this->label1->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
             this->label1->Location = System::Drawing::Point(24, 128);
             this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
             this->label1->Name = L"label1";
-            this->label1->Size = System::Drawing::Size(53, 13);
+            this->label1->Size = System::Drawing::Size(74, 18);
             this->label1->TabIndex = 5;
             this->label1->Text = L"username";
             // 
             // label2
             // 
             this->label2->AutoSize = true;
-            this->label2->Location = System::Drawing::Point(35, 440);
+            this->label2->Location = System::Drawing::Point(763, 34);
             this->label2->Name = L"label2";
-            this->label2->Size = System::Drawing::Size(35, 13);
+            this->label2->Size = System::Drawing::Size(44, 16);
             this->label2->TabIndex = 6;
             this->label2->Text = L"label2";
             this->label2->Click += gcnew System::EventHandler(this, &MyForm::label2_Click);
@@ -146,12 +151,24 @@ namespace Project2 {
             this->button1->UseVisualStyleBackColor = true;
             this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
             // 
+            // pictureBox1
+            // 
+            this->pictureBox1->BackColor = System::Drawing::Color::Transparent;
+            this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
+            this->pictureBox1->Location = System::Drawing::Point(212, 358);
+            this->pictureBox1->Name = L"pictureBox1";
+            this->pictureBox1->Size = System::Drawing::Size(234, 216);
+            this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+            this->pictureBox1->TabIndex = 8;
+            this->pictureBox1->TabStop = false;
+            // 
             // MyForm
             // 
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
             this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
             this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-            this->ClientSize = System::Drawing::Size(662, 453);
+            this->ClientSize = System::Drawing::Size(870, 570);
+            this->Controls->Add(this->pictureBox1);
             this->Controls->Add(this->button1);
             this->Controls->Add(this->label2);
             this->Controls->Add(this->label1);
@@ -161,10 +178,12 @@ namespace Project2 {
             this->Controls->Add(this->labelPassword);
             this->Controls->Add(this->labelUsername);
             this->Margin = System::Windows::Forms::Padding(4);
+            this->MinimumSize = System::Drawing::Size(300, 200);
             this->Name = L"MyForm";
             this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
             this->Text = L"MyForm";
             this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
             this->ResumeLayout(false);
             this->PerformLayout();
 

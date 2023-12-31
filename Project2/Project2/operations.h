@@ -4,8 +4,9 @@
 #include "depositform.h"
 #include "withdrawform.h"
 #include "checkbalance.h"
-
+#include "transfer.h"
 #include "accountdetails.h"
+#include "changepass.h"
 namespace Project2 {
 	extern   LinkedList<User> usertList;
 	using namespace System;
@@ -57,6 +58,7 @@ namespace Project2 {
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Button^ button3;
 	private: System::Windows::Forms::Button^ button4;
+	private: System::Windows::Forms::Button^ button2;
 
 	private:
 		/// <summary>
@@ -77,14 +79,18 @@ namespace Project2 {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// deposit
 			// 
-			this->deposit->Location = System::Drawing::Point(29, 42);
-			this->deposit->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->deposit->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11));
+			this->deposit->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"deposit.Image")));
+			this->deposit->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->deposit->Location = System::Drawing::Point(29, 52);
+			this->deposit->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->deposit->Name = L"deposit";
-			this->deposit->Size = System::Drawing::Size(122, 53);
+			this->deposit->Size = System::Drawing::Size(186, 65);
 			this->deposit->TabIndex = 0;
 			this->deposit->Text = L"deposit";
 			this->deposit->UseVisualStyleBackColor = true;
@@ -92,10 +98,13 @@ namespace Project2 {
 			// 
 			// withdraw
 			// 
-			this->withdraw->Location = System::Drawing::Point(210, 42);
-			this->withdraw->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->withdraw->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11));
+			this->withdraw->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"withdraw.Image")));
+			this->withdraw->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->withdraw->Location = System::Drawing::Point(254, 52);
+			this->withdraw->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->withdraw->Name = L"withdraw";
-			this->withdraw->Size = System::Drawing::Size(116, 53);
+			this->withdraw->Size = System::Drawing::Size(181, 65);
 			this->withdraw->TabIndex = 1;
 			this->withdraw->Text = L"withdraw";
 			this->withdraw->UseVisualStyleBackColor = true;
@@ -103,10 +112,11 @@ namespace Project2 {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(29, 166);
-			this->button1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11));
+			this->button1->Location = System::Drawing::Point(29, 204);
+			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(122, 53);
+			this->button1->Size = System::Drawing::Size(186, 65);
 			this->button1->TabIndex = 2;
 			this->button1->Text = L"check balance";
 			this->button1->UseVisualStyleBackColor = true;
@@ -114,38 +124,60 @@ namespace Project2 {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(210, 166);
-			this->button3->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11));
+			this->button3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button3.Image")));
+			this->button3->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->button3->Location = System::Drawing::Point(254, 204);
+			this->button3->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(116, 53);
+			this->button3->Size = System::Drawing::Size(181, 65);
 			this->button3->TabIndex = 3;
 			this->button3->Text = L"transfer";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &operations::button3_Click);
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(29, 287);
-			this->button4->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11));
+			this->button4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button4.Image")));
+			this->button4->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->button4->Location = System::Drawing::Point(29, 353);
+			this->button4->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(122, 53);
+			this->button4->Size = System::Drawing::Size(186, 65);
 			this->button4->TabIndex = 4;
 			this->button4->Text = L"account details";
 			this->button4->UseVisualStyleBackColor = true;
 			this->button4->Click += gcnew System::EventHandler(this, &operations::button4_Click_1);
 			// 
+			// button2
+			// 
+			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11));
+			this->button2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button2.Image")));
+			this->button2->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->button2->Location = System::Drawing::Point(254, 353);
+			this->button2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(181, 65);
+			this->button2->TabIndex = 5;
+			this->button2->Text = L"transfer";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &operations::button2_Click);
+			// 
 			// operations
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(652, 463);
+			this->ClientSize = System::Drawing::Size(870, 570);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->withdraw);
 			this->Controls->Add(this->deposit);
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"operations";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"operations";
@@ -210,6 +242,27 @@ private: System::Void button4_Click_1(System::Object^ sender, System::EventArgs^
 	this->Hide();
 
 	checkFormInstance->ShowDialog();
+
+	this->Show();
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	transfer^ transferFormInstance = gcnew transfer(loggedInUserIndex);
+
+	this->Hide();
+
+	transferFormInstance->ShowDialog();
+
+	this->Show();
+
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	changepass^ transferFormInstance = gcnew changepass(loggedInUserIndex);
+
+	this->Hide();
+
+	transferFormInstance->ShowDialog();
 
 	this->Show();
 }

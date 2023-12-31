@@ -61,6 +61,7 @@ namespace Project2 {
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::TextBox^ textBox6;
 	private: System::Windows::Forms::Label^ label6;
+	private: System::Windows::Forms::PictureBox^ pictureBox1;
 
 	private:
 		/// <summary>
@@ -90,6 +91,8 @@ namespace Project2 {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// button1
@@ -103,7 +106,7 @@ namespace Project2 {
 				static_cast<System::Int32>(static_cast<System::Byte>(20)), static_cast<System::Int32>(static_cast<System::Byte>(20)));
 			this->button1->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->button1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button1.Image")));
-			this->button1->Location = System::Drawing::Point(223, 465);
+			this->button1->Location = System::Drawing::Point(226, 485);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(204, 56);
 			this->button1->TabIndex = 0;
@@ -230,7 +233,7 @@ namespace Project2 {
 			this->button2->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->button2->Location = System::Drawing::Point(12, 12);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(105, 43);
+			this->button2->Size = System::Drawing::Size(101, 52);
 			this->button2->TabIndex = 11;
 			this->button2->Text = L"Back";
 			this->button2->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
@@ -258,6 +261,17 @@ namespace Project2 {
 			this->label6->TabIndex = 13;
 			this->label6->Text = L"initial balance";
 			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->BackColor = System::Drawing::Color::Transparent;
+			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
+			this->pictureBox1->Location = System::Drawing::Point(254, 199);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(263, 251);
+			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->pictureBox1->TabIndex = 14;
+			this->pictureBox1->TabStop = false;
+			// 
 			// MyForm2h
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -265,6 +279,7 @@ namespace Project2 {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(870, 570);
+			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->textBox6);
 			this->Controls->Add(this->button2);
@@ -280,12 +295,12 @@ namespace Project2 {
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->button1);
 			this->Name = L"MyForm2h";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MyForm2h";
 			this->Load += gcnew System::EventHandler(this, &MyForm2h::MyForm2h_Load);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
-			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
-
 
 		}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -295,31 +310,32 @@ namespace Project2 {
 		String^ enteredpassword = textBox2->Text;
 		String^ enteredaccount = textBox3->Text;
 		String^ enteredBalance = textBox6->Text;
+		String^ enterednumber = textBox4->Text;
 		double parsedBalance;
-		System::Double::TryParse(enteredBalance, parsedBalance);
+		int parsedphone;
 
-		signin(enteredUsername,enteredpassword, enteredaccount, parsedBalance);
+		System::Double::TryParse(enteredBalance, parsedBalance);
+		System::Int32::TryParse(enterednumber, parsedphone);
+
+		signin(enteredUsername,enteredpassword, enteredaccount, parsedBalance,parsedphone);
 		
 	}
 
-		void signin(String^ enteredUsername,String^ enteredpassword, String ^ enteredaccount, double enteredbalance) {
+		void signin(String^ enteredUsername,String^ enteredpassword, String ^ enteredaccount, double enteredbalance,int enterednumber) {
 	
 
-			// Generate some default values for user attributes
-			
-			std::string phoneNumber = "452656356";
 			std::string address = "123 Main St";
 			
-			
-			// Assume you have a unique ID for each user, for example, based on the current timestamp
-			// You can use a proper unique ID mechanism in your application
+			//  unique ID mechanism 
 			std::string userId = "ID_" + std::to_string(static_cast<long long>(time(0)));
 
-			
-			std::string username = msclr::interop::marshal_as<std::string>(enteredUsername);
-			std::string userpassword = msclr::interop::marshal_as<std::string>(enteredpassword);
-			std::string account = msclr::interop::marshal_as<std::string>(enteredaccount);
-	
+		
+
+			msclr::interop::marshal_context context;
+			std::string username = context.marshal_as<std::string>(enteredUsername);
+			std::string userpassword = context.marshal_as<std::string>(enteredpassword);
+			std::string account = context.marshal_as<std::string>(enteredaccount);
+			std::string phoneNumber = context.marshal_as<std::string>(enterednumber.ToString());
 
 			BankAccount account2(account, enteredbalance);
 			// if the user already signed 
@@ -336,14 +352,10 @@ namespace Project2 {
 			int index = usertList.getSize();;
 
 
-			/*
-			while (index < usertList.getSize() && username.compare(usertList.getElementAt(index).getUsername()) > 0) {
-				index++;
-			}
-			*/
+		
 
 			// the fields are not empty
-			if (String::IsNullOrEmpty(enteredUsername) || String::IsNullOrEmpty(enteredpassword) || String::IsNullOrEmpty(enteredaccount)) {
+			if (String::IsNullOrEmpty(enteredUsername) || String::IsNullOrEmpty(enteredpassword) || String::IsNullOrEmpty(enteredaccount) ) {
 				MessageBox::Show("Please enter both username and password.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 				return;
 			}

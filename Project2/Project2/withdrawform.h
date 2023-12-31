@@ -50,7 +50,8 @@ namespace Project2 {
 	private: int loggedInUserIndex;
 	protected:
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ withdraw;
+
 	private: System::Windows::Forms::Label^ label2;
 
 	private:
@@ -69,7 +70,7 @@ namespace Project2 {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(withdrawform::typeid));
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->withdraw = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
@@ -93,15 +94,16 @@ namespace Project2 {
 			this->label1->Text = L"label1";
 			this->label1->Click += gcnew System::EventHandler(this, &withdrawform::label1_Click);
 			// 
-			// button1
+			// withdraw
 			// 
-			this->button1->Location = System::Drawing::Point(171, 362);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(100, 38);
-			this->button1->TabIndex = 2;
-			this->button1->Text = L"button1";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &withdrawform::button1_Click);
+			this->withdraw->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11));
+			this->withdraw->Location = System::Drawing::Point(171, 362);
+			this->withdraw->Name = L"withdraw";
+			this->withdraw->Size = System::Drawing::Size(100, 38);
+			this->withdraw->TabIndex = 2;
+			this->withdraw->Text = L"withdraw";
+			this->withdraw->UseVisualStyleBackColor = true;
+			this->withdraw->Click += gcnew System::EventHandler(this, &withdrawform::button1_Click);
 			// 
 			// label2
 			// 
@@ -123,16 +125,15 @@ namespace Project2 {
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(870, 570);
 			this->Controls->Add(this->label2);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->withdraw);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->textBox1);
 			this->Name = L"withdrawform";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"withdrawform";
 			this->Load += gcnew System::EventHandler(this, &withdrawform::withdrawform_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
-			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
-
 
 		}
 #pragma endregion
@@ -147,17 +148,23 @@ namespace Project2 {
 			// Retrieve the current balance
 			double currentBalance = currentUser.getBankAccount().getBalance();
 
-			// Update the user's balance
-			currentBalance -= amount;
 
-			// Set the new balance to the user's bank account
+			if (amount <= currentBalance) {
+				// Update the user  balance
+				currentBalance -= amount;
+			}
+			else {
+				 MessageBox::Show("the amount is bigger than your current balance", "Information", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			}
+			
+
+			// Set the new balance 
 			currentUser.getBankAccount().setBalance(currentBalance);
 
-			//  usertList.getElementAt(loggedInUserIndex).bankAccount.setBalance(currentBalance);
-			  // Update the user in the usertList
+		
 			usertList.replaceElementAt(loggedInUserIndex, currentUser);
 
-			//   usertList.getElementAt(loggedInUserIndex).bankAccount.setBalance(currentBalance);
+			
 
 			label1->Text = "Balance after withdraw: $" + currentUser.getBankAccount().getBalance();
 

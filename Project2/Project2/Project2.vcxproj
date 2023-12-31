@@ -123,6 +123,7 @@
   <ItemGroup>
     <ClCompile Include="accountdetails.cpp" />
     <ClCompile Include="BankAccount.cpp" />
+    <ClCompile Include="changepass.cpp" />
     <ClCompile Include="checkbalance.cpp" />
     <ClCompile Include="Customer.cpp" />
     <ClCompile Include="depositform.cpp" />
@@ -133,6 +134,7 @@
     <ClCompile Include="MyForm2h.cpp" />
     <ClCompile Include="operations.cpp" />
     <ClCompile Include="Transaction.cpp" />
+    <ClCompile Include="transfer.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="withdrawform.cpp" />
   </ItemGroup>
@@ -141,6 +143,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="BankAccount.h" />
+    <ClInclude Include="changepass.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="checkbalance.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -161,6 +166,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Transaction.h" />
+    <ClInclude Include="transfer.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="User.h" />
     <ClInclude Include="withdrawform.h">
       <FileType>CppForm</FileType>
@@ -169,6 +177,9 @@
   <ItemGroup>
     <EmbeddedResource Include="accountdetails.resx">
       <DependentUpon>accountdetails.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="changepass.resx">
+      <DependentUpon>changepass.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="checkbalance.resx">
       <DependentUpon>checkbalance.h</DependentUpon>
@@ -187,6 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="operations.resx">
       <DependentUpon>operations.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="transfer.resx">
+      <DependentUpon>transfer.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="withdrawform.resx">
       <DependentUpon>withdrawform.h</DependentUpon>

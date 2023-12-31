@@ -89,7 +89,8 @@ namespace Project2 {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(176, 386);
+			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11));
+			this->button1->Location = System::Drawing::Point(176, 401);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(125, 46);
 			this->button1->TabIndex = 1;
@@ -102,7 +103,7 @@ namespace Project2 {
 			this->label1->AutoSize = true;
 			this->label1->BackColor = System::Drawing::Color::Transparent;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 12));
-			this->label1->Location = System::Drawing::Point(22, 265);
+			this->label1->Location = System::Drawing::Point(22, 277);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(104, 24);
 			this->label1->TabIndex = 2;
@@ -143,12 +144,11 @@ namespace Project2 {
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->textBox1);
 			this->Name = L"depositform";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"depositform";
 			this->Load += gcnew System::EventHandler(this, &depositform::depositform_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
-			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
-
 
 		}
 #pragma endregion

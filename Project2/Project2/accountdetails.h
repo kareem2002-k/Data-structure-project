@@ -59,6 +59,8 @@ namespace Project2 {
 	private: System::Windows::Forms::Label^ label8;
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::Label^ label10;
+	private: System::Windows::Forms::Label^ label11;
+	private: System::Windows::Forms::Label^ label12;
 
 	private:
 		/// <summary>
@@ -85,11 +87,13 @@ namespace Project2 {
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->label10 = (gcnew System::Windows::Forms::Label());
+			this->label11 = (gcnew System::Windows::Forms::Label());
+			this->label12 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(183, 422);
+			this->button1->Location = System::Drawing::Point(183, 473);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(102, 47);
 			this->button1->TabIndex = 0;
@@ -101,19 +105,22 @@ namespace Project2 {
 			// 
 			this->label1->AutoSize = true;
 			this->label1->BackColor = System::Drawing::Color::Transparent;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11));
 			this->label1->Location = System::Drawing::Point(33, 68);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(94, 16);
+			this->label1->Size = System::Drawing::Size(124, 24);
 			this->label1->TabIndex = 1;
-			this->label1->Text = L"the Balance : $";
+			this->label1->Text = L"the Balance : ";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
 			this->label2->BackColor = System::Drawing::Color::Transparent;
-			this->label2->Location = System::Drawing::Point(34, 144);
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label2->Location = System::Drawing::Point(34, 157);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(76, 16);
+			this->label2->Size = System::Drawing::Size(102, 22);
 			this->label2->TabIndex = 2;
 			this->label2->Text = L"Username: ";
 			// 
@@ -121,29 +128,35 @@ namespace Project2 {
 			// 
 			this->label3->AutoSize = true;
 			this->label3->BackColor = System::Drawing::Color::Transparent;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label3->Location = System::Drawing::Point(33, 233);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(70, 16);
+			this->label3->Size = System::Drawing::Size(94, 22);
 			this->label3->TabIndex = 3;
 			this->label3->Text = L"Password:";
+			this->label3->Click += gcnew System::EventHandler(this, &accountdetails::label3_Click);
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
 			this->label4->BackColor = System::Drawing::Color::Transparent;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11));
 			this->label4->Location = System::Drawing::Point(33, 295);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(83, 16);
+			this->label4->Size = System::Drawing::Size(117, 24);
 			this->label4->TabIndex = 4;
 			this->label4->Text = L"accounttype:";
+			this->label4->Click += gcnew System::EventHandler(this, &accountdetails::label4_Click);
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
 			this->label5->BackColor = System::Drawing::Color::Transparent;
+			this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11));
 			this->label5->Location = System::Drawing::Point(33, 371);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(77, 16);
+			this->label5->Size = System::Drawing::Size(111, 24);
 			this->label5->TabIndex = 5;
 			this->label5->Text = L"accnumber:";
 			// 
@@ -193,6 +206,26 @@ namespace Project2 {
 			this->label10->Size = System::Drawing::Size(0, 16);
 			this->label10->TabIndex = 10;
 			// 
+			// label11
+			// 
+			this->label11->AutoSize = true;
+			this->label11->BackColor = System::Drawing::Color::Transparent;
+			this->label11->Location = System::Drawing::Point(180, 429);
+			this->label11->Name = L"label11";
+			this->label11->Size = System::Drawing::Size(0, 16);
+			this->label11->TabIndex = 11;
+			// 
+			// label12
+			// 
+			this->label12->AutoSize = true;
+			this->label12->BackColor = System::Drawing::Color::Transparent;
+			this->label12->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11));
+			this->label12->Location = System::Drawing::Point(34, 424);
+			this->label12->Name = L"label12";
+			this->label12->Size = System::Drawing::Size(136, 24);
+			this->label12->TabIndex = 12;
+			this->label12->Text = L"phobenumber:";
+			// 
 			// accountdetails
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -200,6 +233,8 @@ namespace Project2 {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(870, 570);
+			this->Controls->Add(this->label12);
+			this->Controls->Add(this->label11);
 			this->Controls->Add(this->label10);
 			this->Controls->Add(this->label9);
 			this->Controls->Add(this->label8);
@@ -212,12 +247,11 @@ namespace Project2 {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
 			this->Name = L"accountdetails";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"accountdetails";
 			this->Load += gcnew System::EventHandler(this, &accountdetails::accountdetails_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
-			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
-
 
 		}
 #pragma endregion
@@ -234,7 +268,8 @@ namespace Project2 {
 		label8->Text =   gcnew String(currentUser.getPassword().c_str());
 		label9->Text =   gcnew String(currentUser.getBankAccount().getAccountType().c_str());
 		label10->Text =   gcnew String(currentUser.getBankAccount().getAccountNumber().c_str());
-	
+		label11->Text = gcnew String(currentUser.getPhonenum().c_str());
+
 
 		//  usertList.getElementAt(loggedInUserIndex).bankAccount.setBalance(currentBalance);
 		  // Update the user in the usertList
@@ -243,5 +278,9 @@ namespace Project2 {
 	}
 	private: System::Void label6_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

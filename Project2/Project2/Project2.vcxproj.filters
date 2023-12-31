@@ -57,6 +57,12 @@
     <ClCompile Include="accountdetails.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="transfer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="changepass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyForm.h">
@@ -93,6 +99,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="accountdetails.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="transfer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="changepass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
