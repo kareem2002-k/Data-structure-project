@@ -136,7 +136,7 @@ namespace Project2 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(608, 481);
+			this->ClientSize = System::Drawing::Size(870, 570);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
@@ -147,6 +147,8 @@ namespace Project2 {
 			this->Load += gcnew System::EventHandler(this, &depositform::depositform_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+
 
 		}
 #pragma endregion

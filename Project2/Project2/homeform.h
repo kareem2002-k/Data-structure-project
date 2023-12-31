@@ -88,7 +88,7 @@ namespace Project2 {
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
             this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
             this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-            this->ClientSize = System::Drawing::Size(728, 525);
+            this->ClientSize = System::Drawing::Size(870, 570);
             this->Controls->Add(this->button2);
             this->Controls->Add(this->button1);
             this->MinimumSize = System::Drawing::Size(300, 200);
@@ -96,6 +96,8 @@ namespace Project2 {
             this->Text = L"homeform";
             this->Load += gcnew System::EventHandler(this, &homeform::homeform_Load);
             this->ResumeLayout(false);
+            this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+
 
         }
 

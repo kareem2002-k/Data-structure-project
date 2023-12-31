@@ -199,7 +199,7 @@ namespace Project2 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(614, 500);
+			this->ClientSize = System::Drawing::Size(870, 570);
 			this->Controls->Add(this->label10);
 			this->Controls->Add(this->label9);
 			this->Controls->Add(this->label8);
@@ -216,6 +216,8 @@ namespace Project2 {
 			this->Load += gcnew System::EventHandler(this, &accountdetails::accountdetails_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+
 
 		}
 #pragma endregion

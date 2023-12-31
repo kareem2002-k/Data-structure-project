@@ -264,7 +264,7 @@ namespace Project2 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(731, 533);
+			this->ClientSize = System::Drawing::Size(870, 570);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->textBox6);
 			this->Controls->Add(this->button2);
@@ -284,6 +284,8 @@ namespace Project2 {
 			this->Load += gcnew System::EventHandler(this, &MyForm2h::MyForm2h_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+
 
 		}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {

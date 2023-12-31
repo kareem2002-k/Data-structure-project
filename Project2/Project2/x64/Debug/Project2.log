@@ -17,3 +17,5 @@ F:\ds proj\Data-structure-project\Project2\Project2\User.cpp(130,10): warning C4
   withdrawform.cpp
   .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
   Generating Code...
+  accountdetails.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  Project2.vcxproj -> F:\ds proj\Data-structure-project\Project2\x64\Debug\Project2.exe

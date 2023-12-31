@@ -81,9 +81,10 @@ namespace Project2 {
 			// 
 			// deposit
 			// 
-			this->deposit->Location = System::Drawing::Point(39, 52);
+			this->deposit->Location = System::Drawing::Point(29, 42);
+			this->deposit->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->deposit->Name = L"deposit";
-			this->deposit->Size = System::Drawing::Size(162, 65);
+			this->deposit->Size = System::Drawing::Size(122, 53);
 			this->deposit->TabIndex = 0;
 			this->deposit->Text = L"deposit";
 			this->deposit->UseVisualStyleBackColor = true;
@@ -91,9 +92,10 @@ namespace Project2 {
 			// 
 			// withdraw
 			// 
-			this->withdraw->Location = System::Drawing::Point(280, 52);
+			this->withdraw->Location = System::Drawing::Point(210, 42);
+			this->withdraw->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->withdraw->Name = L"withdraw";
-			this->withdraw->Size = System::Drawing::Size(155, 65);
+			this->withdraw->Size = System::Drawing::Size(116, 53);
 			this->withdraw->TabIndex = 1;
 			this->withdraw->Text = L"withdraw";
 			this->withdraw->UseVisualStyleBackColor = true;
@@ -101,9 +103,10 @@ namespace Project2 {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(39, 204);
+			this->button1->Location = System::Drawing::Point(29, 166);
+			this->button1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(162, 65);
+			this->button1->Size = System::Drawing::Size(122, 53);
 			this->button1->TabIndex = 2;
 			this->button1->Text = L"check balance";
 			this->button1->UseVisualStyleBackColor = true;
@@ -111,18 +114,20 @@ namespace Project2 {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(280, 204);
+			this->button3->Location = System::Drawing::Point(210, 166);
+			this->button3->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(155, 65);
+			this->button3->Size = System::Drawing::Size(116, 53);
 			this->button3->TabIndex = 3;
 			this->button3->Text = L"transfer";
 			this->button3->UseVisualStyleBackColor = true;
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(39, 353);
+			this->button4->Location = System::Drawing::Point(29, 287);
+			this->button4->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(162, 65);
+			this->button4->Size = System::Drawing::Size(122, 53);
 			this->button4->TabIndex = 4;
 			this->button4->Text = L"account details";
 			this->button4->UseVisualStyleBackColor = true;
@@ -130,17 +135,19 @@ namespace Project2 {
 			// 
 			// operations
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(940, 590);
+			this->ClientSize = System::Drawing::Size(652, 463);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->withdraw);
 			this->Controls->Add(this->deposit);
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Name = L"operations";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"operations";
 			this->Load += gcnew System::EventHandler(this, &operations::operations_Load);
 			this->ResumeLayout(false);
