@@ -53,6 +53,7 @@ namespace Project2 {
 	private: int loggedInUserIndex;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Button^ button2;
 
 
 	private:
@@ -77,6 +78,7 @@ namespace Project2 {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// textBox1
@@ -131,6 +133,16 @@ namespace Project2 {
 			this->label3->TabIndex = 4;
 			this->label3->Text = L"balance before";
 			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(26, 12);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(77, 33);
+			this->button2->TabIndex = 5;
+			this->button2->Text = L"back";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &depositform::button2_Click);
+			// 
 			// depositform
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -138,6 +150,7 @@ namespace Project2 {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(870, 570);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
@@ -230,6 +243,10 @@ namespace Project2 {
 			
 	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	this->Close();
+}
 };
 }
 #endif

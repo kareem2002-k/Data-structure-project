@@ -52,6 +52,7 @@ namespace Project2 {
 	private: System::Windows::Forms::TextBox^ textBox2;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Button^ button2;
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -71,6 +72,7 @@ namespace Project2 {
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// button1
@@ -85,14 +87,14 @@ namespace Project2 {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(250, 113);
+			this->textBox1->Location = System::Drawing::Point(250, 157);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(109, 22);
 			this->textBox1->TabIndex = 1;
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(44, 113);
+			this->textBox2->Location = System::Drawing::Point(35, 157);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(125, 22);
 			this->textBox2->TabIndex = 2;
@@ -101,7 +103,7 @@ namespace Project2 {
 			// 
 			this->label1->AutoSize = true;
 			this->label1->BackColor = System::Drawing::Color::Transparent;
-			this->label1->Location = System::Drawing::Point(41, 69);
+			this->label1->Location = System::Drawing::Point(42, 95);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(128, 16);
 			this->label1->TabIndex = 3;
@@ -111,11 +113,21 @@ namespace Project2 {
 			// 
 			this->label2->AutoSize = true;
 			this->label2->BackColor = System::Drawing::Color::Transparent;
-			this->label2->Location = System::Drawing::Point(247, 69);
+			this->label2->Location = System::Drawing::Point(247, 95);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(112, 16);
 			this->label2->TabIndex = 4;
 			this->label2->Text = L"amount to transfer";
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(35, 12);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(76, 31);
+			this->button2->TabIndex = 5;
+			this->button2->Text = L"back";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &transfer::button2_Click);
 			// 
 			// transfer
 			// 
@@ -124,6 +136,7 @@ namespace Project2 {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(870, 570);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->textBox2);
@@ -183,5 +196,8 @@ namespace Project2 {
 
 		performtransfer();
 	}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
+}
 };
 }
