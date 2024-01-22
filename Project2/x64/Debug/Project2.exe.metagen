@@ -1,0 +1,86 @@
+  Project2.accountdetails.resources - Embedded, ContainedInManifestFile, 
+  Project2.changepass.resources - Embedded, ContainedInManifestFile, 
+  Project2.checkbalance.resources - Embedded, ContainedInManifestFile, 
+  Project2.depositform.resources - Embedded, ContainedInManifestFile, 
+  Project2.homeform.resources - Embedded, ContainedInManifestFile, 
+  Project2.MyForm.resources - Embedded, ContainedInManifestFile, 
+  Project2.MyForm2h.resources - Embedded, ContainedInManifestFile, 
+  Project2.operations.resources - Embedded, ContainedInManifestFile, 
+  Project2.transfer.resources - Embedded, ContainedInManifestFile, 
+  Project2.withdrawform.resources - Embedded, ContainedInManifestFile, 
+ImageRuntimeVersion: v4.0.30319
+Assembly Project2, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
+	hash=None, flags=None
+Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Class Project2.accountdetails: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Project2.changepass: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Project2.checkbalance: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Project2.depositform: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class ManagedUser: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(User*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Properties:
+    System.String AccountType 'get ' : 
+    Double Balance 'get ' : 
+    System.String Role 'get ' : 
+    System.String Address 'get ' : 
+    System.String Phonenum 'get ' : 
+    System.String Password 'get ' : 
+    System.String Username 'get ' : 
+  Methods:
+    get_Username(): PrivateScope, Public, HideBySig, SpecialName
+    get_Password(): PrivateScope, Public, HideBySig, SpecialName
+    get_Phonenum(): PrivateScope, Public, HideBySig, SpecialName
+    get_Address(): PrivateScope, Public, HideBySig, SpecialName
+    get_Role(): PrivateScope, Public, HideBySig, SpecialName
+    get_Balance(): PrivateScope, Public, HideBySig, SpecialName
+    get_AccountType(): PrivateScope, Public, HideBySig, SpecialName
+    setBalance(Double): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig
+Class Project2.withdrawform: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Project2.transfer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Project2.operations: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Project2.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(System.String, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.Windows.Forms.Form obj : Public
+Class Project2.MyForm2h: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Project2.homeform: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

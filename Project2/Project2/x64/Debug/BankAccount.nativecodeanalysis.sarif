@@ -1,0 +1,59 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.33.31630.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///d:/myrepo/project2/project2/bankaccount.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "73c6c94a6e6ba73e66bdf4d3256dcf2cdf8066216fcd5a8ba436d461d49eda12"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/myrepo/project2/project2/bankaccount.h"
+          },
+          "hashes": {
+            "sha-256": "b6135681d5f11286c327b151c67ec7335281fd0e15d66f96ab76274a723d7b88"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/myrepo/project2/project2/transaction.h"
+          },
+          "hashes": {
+            "sha-256": "b6766cf25f1892d9573aa16a6866d6d78569fc2791c91c89af4964e7c032f304"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///d:/myrepo/project2/project2/linkedlist.cpp"
+          },
+          "hashes": {
+            "sha-256": "b101e9a88a4f67cbe3ceaac4b6449d612fea306822fbd5a69b0a542f7d977528"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+﻿  accountdetails.cpp
+  BankAccount.cpp
+D:\semster5\data structure\projectnew\Data-structure-project\Project2\Project2\BankAccount.cpp(141,10): warning C4101: 'comma': unreferenced local variable
+  changepass.cpp
+  checkbalance.cpp
+  Customer.cpp
+  depositform.cpp
+  homeform.cpp
+  LinkedList.cpp
+  ManagedUser .cpp
+  MyForm.cpp
+  MyForm2h.cpp
+  operations.cpp
+  Transaction.cpp
+D:\semster5\data structure\projectnew\Data-structure-project\Project2\Project2\Transaction.cpp(11,15): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  transfer.cpp
+  User.cpp
+D:\semster5\data structure\projectnew\Data-structure-project\Project2\Project2\User.cpp(130,10): warning C4101: 'comma': unreferenced local variable
+  withdrawform.cpp
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+  Generating Code...
+  accountdetails.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  Project2.vcxproj -> D:\semster5\data structure\projectnew\Data-structure-project\Project2\x64\Debug\Project2.exe
